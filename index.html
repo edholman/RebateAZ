@@ -608,6 +608,73 @@
                     <p><small>Actual rebate may vary based on commission structure</small></p>
                 </div>
             </div>
+
+            <!-- Mortgage Rate Widget -->
+            <div class="calculator-container" style="margin-top: 2rem;">
+                <h2>Check Current Mortgage Rates</h2>
+                <h3>See Today's Rates Based on Your Profile</h3>
+                
+                <form id="mortgageRateForm" style="padding: 0 1rem;">
+                    <div class="form-group">
+                        <label for="mortgage-state">State</label>
+                        <select id="mortgage-state" name="state" required>
+                            <option value="AZ" selected>Arizona</option>
+                            <option value="CA">California</option>
+                            <option value="NV">Nevada</option>
+                            <option value="UT">Utah</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="loan-amount">Loan Amount ($)</label>
+                        <input type="number" id="loan-amount" name="loan_amount" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="property-value">Property Value ($)</label>
+                        <input type="number" id="property-value" name="property_value" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mortgage-zip">ZIP Code</label>
+                        <input type="text" id="mortgage-zip" name="zip" maxlength="5" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="credit-score">Credit Score</label>
+                        <input type="number" id="credit-score" name="credit_score" min="300" max="850" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="loan-type">Loan Type</label>
+                        <select id="loan-type" name="loan_type">
+                            <option value="0" selected>Conventional</option>
+                            <option value="1">FHA</option>
+                            <option value="2">VA</option>
+                            <option value="3">USDA</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="purpose">Purpose</label>
+                        <select id="purpose" name="purpose">
+                            <option value="1">Purchase</option>
+                            <option value="2" selected>Refinance</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                        <label style="flex: 1;">
+                            <input type="checkbox" name="first_time_home_buyer" checked> First-Time Buyer?
+                        </label>
+                        <label style="flex: 1;">
+                            <input type="checkbox" name="low_income" checked> Low-Income Program?
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="cta-button" style="margin-top: 1rem;">Get Mortgage Rates</button>
+                </form>
+            </div>
         </div>
     </section>
 
@@ -786,6 +853,44 @@
                     behavior: 'smooth'
                 });
             });
+        });
+
+        // Mortgage Rate Widget Functionality
+        document.getElementById("mortgageRateForm").onsubmit = function(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const params = new URLSearchParams();
+            
+            // Add all form fields to URL params
+            for (const [key, value] of formData.entries()) {
+                params.append(key, value);
+            }
+            
+            // Set default values for hidden fields
+            params.set("super_conf_limit", "1209750");
+            params.set("ami", "192300");
+            params.set("is_new", "false");
+            params.set("impounds", "false");
+            params.set("property_type", "0");
+            params.set("use_lp", "false");
+            params.set("financed_properties", "1");
+            params.set("income_to_ami", "0");
+            params.set("lock_period", "30");
+            params.set("loan_program_group", "2");
+            
+            // Redirect to mortgage site with pre-filled data
+            window.open(
+                `https://www.mymortgagemate.com/quote/qm?${params.toString()}`,
+                "_blank"
+            );
+        };
+
+        // Pre-fill some fields from the rebate calculator
+        document.getElementById('price').addEventListener('input', function() {
+            const homePrice = this.value;
+            document.getElementById('property-value').value = homePrice;
+            // Set loan amount to 80% of home price by default
+            document.getElementById('loan-amount').value = Math.round(homePrice * 0.8);
         });
     </script>
 </body>
