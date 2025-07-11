@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhyRebate - Real Estate Commission Rebate Program | HomeSmart</title>
+    <meta name="description" content="Save up to 2% on your home purchase with WhyRebate's commission rebate program. Work with licensed HomeSmart agents and get thousands back at closing. Calculate your savings today.">
+    
+    <!-- Open Graph tags for social sharing -->
+    <meta property="og:title" content="WhyRebate - Save Up to 2% on Your Home Purchase">
+    <meta property="og:description" content="Get thousands back at closing with our commission rebate program. Licensed & insured agents, 4.9/5 rating, no hidden fees.">
+    <meta property="og:type" content="website">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background-color: #ffffff;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .savings-display {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 30px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        /* Calculator Section */
+        .calculator-section {
+            padding: 60px 0;
+            background-color: #f8fafc;
+        }
+        
+        .calculator-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .calculator-title {
+            font-size: 2rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #1e40af;
+        }
+        
+        .price-input-group {
+            margin-bottom: 30px;
+        }
+        
+        .price-label {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .price-slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: #e2e8f0;
+            outline: none;
+            -webkit-appearance: none;
+            margin-bottom: 20px;
+        }
+        
+        .price-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #1e40af;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .price-display {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            color: #1e40af;
+            margin-bottom: 20px;
+        }
+        
+        .rebate-result {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .rebate-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .rebate-text {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* Process Section */
+        .process-section {
+            padding: 60px 0;
+            background: white;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #1e40af;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .process-step {
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+        
+        .step-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1e40af;
+        }
+        
+        .step-description {
+            color: #64748b;
+            line-height: 1.6;
+        }
+        
+        /* Contact Form */
+        .contact-section {
+            padding: 60px 0;
+            background: #f8fafc;
+        }
+        
+        .contact-form {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #374151;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #1e40af;
+        }
+        
+        .form-select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        .footer {
+            background: #1f2937;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #3b82f6;
+        }
+        
+        .footer p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            color: #d1d5db;
+        }
+        
+        .legal-text {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #9ca3af;
+            margin-top: 30px;
+            text-align: left;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .calculator-card,
+            .contact-form {
+                padding: 30px 20px;
+            }
+            
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>WhyRebate</h1>
+            <div class="savings-display">Up to <span id="savingsAmount">$10,000</span> in savings</div>
+            <p class="subtitle">Get money back at closing with our commission rebate program</p>
+        </div>
+    </header>
+
+    <!-- Calculator Section -->
+    <section class="calculator-section">
+        <div class="container">
+            <div class="calculator-card">
+                <h2 class="calculator-title">Calculate Your Rebate</h2>
+                
+                <div class="price-input-group">
+                    <label class="price-label">Home Purchase Price:</label>
+                    <input type="range" id="priceSlider" class="price-slider" min="100000" max="2000000" value="500000" step="10000">
+                    <div class="price-display" id="priceDisplay">$500,000</div>
+                </div>
+                
+                <div class="rebate-result">
+                    <div class="rebate-amount" id="rebateAmount">$10,000</div>
+                    <div class="rebate-text">Estimated rebate (up to 2% of purchase price)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Contact Us</h3>
+                    <p class="step-description">Fill out our simple form to get connected with a licensed HomeSmart agent in your area.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Find Your Home</h3>
+                    <p class="step-description">Work with our experienced agent to find and purchase your dream home.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Get Your Rebate</h3>
+                    <p class="step-description">Receive up to 2% of your purchase price back at closing - money in your pocket!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Get Started Today</h2>
+            
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label class="form-label" for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="priceRange">Price Range *</label>
+                    <select id="priceRange" name="priceRange" class="form-select" required>
+                        <option value="">Select your price range</option>
+                        <option value="100000-300000">$100,000 - $300,000</option>
+                        <option value="300000-500000">$300,000 - $500,000</option>
+                        <option value="500000-750000">$500,000 - $750,000</option>
+                        <option value="750000-1000000">$750,000 - $1,000,000</option>
+                        <option value="1000000+">$1,000,000+</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="timeline">When are you looking to buy?</label>
+                    <select id="timeline" name="timeline" class="form-select">
+                        <option value="">Select timeline</option>
+                        <option value="immediately">Immediately</option>
+                        <option value="1-3months">1-3 months</option>
+                        <option value="3-6months">3-6 months</option>
+                        <option value="6-12months">6-12 months</option>
+                        <option value="just-researching">Just researching</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="submit-btn">Get My Rebate Estimate</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <h3>Powered by HomeSmart</h3>
+                <p>Licensed • Insured • 4.9/5 Star Rating</p>
+                <p>Serving home buyers across the United States</p>
+                
+                <div class="legal-text">
+                    <p><strong>Important Disclosures:</strong></p>
+                    <p>Rebate amounts vary by state and transaction. Maximum rebate is up to 2% of purchase price, subject to state regulations and brokerage policies. Rebates are paid at closing and may affect your loan qualification - consult with your lender. Some states restrict or prohibit rebates to buyers. This offer is available only when using a participating HomeSmart agent for your purchase transaction. Rebate calculation is based on the gross commission received by HomeSmart. Minimum purchase price and other restrictions may apply. Not available for commercial properties, new construction, or FSBO transactions. License requirements and rebate availability vary by state.</p>
+                    <p>HomeSmart is a licensed real estate brokerage. Equal Housing Opportunity. This is not a commitment to lend or guarantee of loan approval.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Calculator functionality
+        const priceSlider = document.getElementById('priceSlider');
+        const priceDisplay = document.getElementById('priceDisplay');
+        const rebateAmount = document.getElementById('rebateAmount');
+        const savingsAmount = document.getElementById('savingsAmount');
+        
+        function updateCalculator() {
+            const price = parseInt(priceSlider.value);
+            const rebate = Math.round(price * 0.02);
+            
+            priceDisplay.textContent = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(price);
+            
+            rebateAmount.textContent = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(rebate);
+            
+            savingsAmount.textContent = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(rebate);
+        }
+        
+        priceSlider.addEventListener('input', updateCalculator);
+        
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Simple validation
+            if (!data.name || !data.email || !data.phone || !data.priceRange) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Show success message
+            alert('Thank you for your interest! A HomeSmart agent will contact you within 24 hours to discuss your rebate eligibility and help you get started.');
+            
+            // Reset form
+            this.reset();
+        });
+        
+        // Initialize calculator
+        updateCalculator();
+    </script>
+</body>
+</html>
