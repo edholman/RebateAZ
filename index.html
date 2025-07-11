@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RebateAZ | Get Up To 2% Back When Buying a Home in Arizona</title>
+    <style>
+        /* Modern CSS with Arizona-inspired colors */
+        :root {
+            --primary: #BF0A30; /* Arizona red */
+            --secondary: #002868; /* Arizona blue */
+            --accent: #F2A900; /* Gold accent */
+            --light: #F8F9FA;
+            --dark: #212529;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: var(--dark);
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .logo-img {
+            height: 40px;
+            width: auto;
+        }
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        .logo-text span {
+            color: var(--accent);
+        }
+        .cta-button {
+            background: var(--accent);
+            color: var(--dark);
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            background: #e69500;
+            transform: translateY(-2px);
+        }
+        .hero {
+            background: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            max-width: 600px;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .calculator {
+            padding: 4rem 0;
+        }
+        .calculator-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin: 0 auto;
+            max-width: 600px;
+        }
+        .calculator h2 {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        .calculator h3 {
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .calculator-group {
+            margin-bottom: 1.5rem;
+        }
+        .calculator-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        .calculator-output {
+            font-weight: bold;
+            color: var(--primary);
+        }
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            -webkit-appearance: none;
+            background: #ddd;
+            border-radius: 4px;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .calculator-results {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        .rebate-amount {
+            font-size: 2rem;
+            color: var(--primary);
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+        .benefits {
+            padding: 4rem 0;
+            background: var(--light);
+        }
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .benefit-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .benefit-card h3 {
+            color: var(--primary);
+        }
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        .how-it-works {
+            padding: 4rem 0;
+        }
+        .steps {
+            counter-reset: step;
+            margin-top: 2rem;
+        }
+        .step {
+            position: relative;
+            padding-left: 5rem;
+            margin-bottom: 2rem;
+        }
+        .step::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: var(--primary);
+            color: white;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .testimonials {
+            background: var(--secondary);
+            color: white;
+            padding: 4rem 0;
+        }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .testimonial {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 8px;
+        }
+        .testimonial-author {
+            font-weight: bold;
+            margin-top: 1rem;
+            color: var(--accent);
+        }
+        .contact {
+            padding: 4rem 0;
+            background: var(--light);
+        }
+        form {
+            max-width: 600px;
+            margin: 2rem auto 0;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        .footer-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .footer-logo-img {
+            height: 30px;
+            width: auto;
+        }
+        .disclaimer {
+            font-size: 0.8rem;
+            line-height: 1.4;
+            background: rgba(0,0,0,0.2);
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border-top: 2px solid var(--accent);
+            color: white;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .logo-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .logo-img {
+                height: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo-container">
+                    <img src="https://homesmart.com/wp-content/uploads/2020/10/homesmart-logo-white.svg" alt="Home Smart Logo" class="logo-img">
+                    <div class="logo-text">Rebate<span>AZ</span></div>
+                </div>
+                <a href="#contact" class="cta-button">Get Your Rebate</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Get Up To 2% Cash Back When Buying a Home in Arizona</h1>
+                <p>Keep thousands in your pocket at closing with our real estate commission rebate program.</p>
+                <a href="#contact" class="cta-button">Claim Your Rebate Today</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="calculator">
+        <div class="container">
+            <div class="calculator-container">
+                <h2>Calculate Your Potential Rebate</h2>
+                <h3>See How Much You Could Get Back</h3>
+                
+                <div class="calculator-group">
+                    <div class="calculator-label">
+                        <label for="price">Home Price ($)</label>
+                        <span id="price-value" class="calculator-output">$300,000</span>
+                    </div>
+                    <input type="range" id="price" min="100000" max="2000000" step="10000" value="300000">
+                </div>
+                
+                <div class="calculator-results">
+                    <p>Your estimated rebate (up to):</p>
+                    <div class="rebate-amount" id="rebate">$6,000</div>
+                    <p>2% of purchase price</p>
+                    <p><small>Actual rebate may vary based on commission structure</small></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits">
+        <div class="container">
+            <h2>Why Choose RebateAZ?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">$</div>
+                    <h3>Maximum Rebates</h3>
+                    <p>We return up to 2% of the purchase price back to you at closing - that's $6,000 on a $300,000 home!</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">✓</div>
+                    <h3>No Hidden Fees</h3>
+                    <p>Our rebate program is completely free for buyers. We're paid by the seller's commission.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🏡</div>
+                    <h3>Full Service</h3>
+                    <p>Work with top Arizona agents while still getting your rebate. You don't sacrifice service for savings.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <h3>Find Your Dream Home</h3>
+                    <p>Work with one of our partner agents or use your own (we'll coordinate with them).</p>
+                </div>
+                <div class="step">
+                    <h3>Complete the Purchase</h3>
+                    <p>Go through the normal home buying process with your agent.</p>
+                </div>
+                <div class="step">
+                    <h3>Get Paid at Closing</h3>
+                    <p>Receive your rebate check at escrow closing - it's that simple!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2>Success Stories</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <p>"Received $8,200 back on our Phoenix home purchase! Used the money for new furniture."</p>
+                    <div class="testimonial-author">- Sarah & Mike T., Scottsdale</div>
+                </div>
+                <div class="testimonial">
+                    <p>"The process was seamless and our agent was fantastic. Highly recommend RebateAZ!"</p>
+                    <div class="testimonial-author">- David R., Tucson</div>
+                </div>
+                <div class="testimonial">
+                    <p>"Never knew this program existed. Got 1.5% back on our first home - life changing!"</p>
+                    <div class="testimonial-author">- Jessica L., Flagstaff</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Start Saving Today</h2>
+            <p>Complete this form and we'll contact you within 24 hours to begin your rebate process.</p>
+            
+            <form>
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone">
+                </div>
+                <div class="form-group">
+                    <label for="location">Target Area</label>
+                    <select id="location">
+                        <option value="">Select an area</option>
+                        <option value="phoenix">Phoenix Metro</option>
+                        <option value="tucson">Tucson</option>
+                        <option value="flagstaff">Flagstaff</option>
+                        <option value="sedona">Sedona</option>
+                        <option value="other">Other Arizona Area</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="timeline">When do you plan to buy?</label>
+                    <select id="timeline">
+                        <option value="">Select timeline</option>
+                        <option value="1month">Within 1 month</option>
+                        <option value="3months">1-3 months</option>
+                        <option value="6months">3-6 months</option>
+                        <option value="looking">Just looking</option>
+                    </select>
+                </div>
+                <button type="submit" class="cta-button">Get My Rebate</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-logo">
+                <img src="https://homesmart.com/wp-content/uploads/2020/10/homesmart-logo-white.svg" alt="Home Smart Logo" class="footer-logo-img">
+                <div>RebateAZ</div>
+            </div>
+            <p>© 2023 Home Smart Real Estate. All rights reserved.</p>
+            <p>Contact: info@rebateaz.com | (480) 555-REBA</p>
+            
+            <div class="disclaimer">
+                <p><strong>Disclaimer:</strong> The rebate figures presented on this website are based on a seller paid buyer broker compensation of 3-4% of the sales price. If the seller paid buyer broker compensation is less than 3.5% of the sales price, your rebate will be less than 2%. The minimum buyer broker compensation amount for the agents participating in this program is 1.5% or $4,500 whichever is higher. If your purchase price is under $300,000 or the seller pays less than a 3.5% buyer broker commission, your rebate will be less than 2%. If the seller does not pay a buyer broker commission, the buyer will fulfill the minimum buyer broker compensation amounts of $4,500 or 1.5% of the sales price, whichever is higher. Depending upon specific loan programs or financing, rebate figures may also be affected based on interested party contribution guidelines, please consult with a lender regarding program guidelines. All rebates are credited to the buyers settlement statement upon a successful close of escrow and not before. Rebate program valid to 12/31/2025 or until expiration of signed buyer broker agreement with participating agent.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simplified Rebate Calculator
+        const priceSlider = document.getElementById('price');
+        const priceValue = document.getElementById('price-value');
+        const rebateAmount = document.getElementById('rebate');
+
+        function formatCurrency(amount) {
+            return '$' + amount.toLocaleString();
+        }
+
+        function calculateRebate() {
+            const price = parseFloat(priceSlider.value);
+            const rebate = price * 0.02; // 2% rebate
+            
+            // Update display
+            priceValue.textContent = formatCurrency(price);
+            rebateAmount.textContent = formatCurrency(rebate);
+        }
+
+        // Initialize calculator
+        calculateRebate();
+        
+        // Add event listener
+        priceSlider.addEventListener('input', calculateRebate);
+    </script>
+</body>
+</html>
