@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - RebateAZ</title>
+    <style>
+        /* Modern CSS with refined styling */
+        :root {
+            --primary: #BF0A30; /* Arizona red */
+            --secondary: #002868; /* Arizona blue */
+            --accent: #F2A900; /* Gold accent */
+            --light: #F8F9FA;
+            --dark: #212529;
+            --text: #333333;
+            --gray: #6c757d;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .thank-you-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .logo-img {
+            height: 48px;
+            width: auto;
+        }
+        
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: -0.5px;
+            color: var(--primary);
+        }
+        
+        .logo-text span {
+            color: var(--accent);
+        }
+        
+        h1 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .success-icon {
+            font-size: 4rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-button {
+            background: var(--accent);
+            color: var(--dark);
+            padding: 0.8rem 2rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(242, 169, 0, 0.3);
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+        
+        .cta-button:hover {
+            background: #e69500;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(242, 169, 0, 0.4);
+        }
+        
+        .next-steps {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            text-align: left;
+        }
+        
+        .next-steps h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .next-steps ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .next-steps li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .next-steps li:last-child {
+            border-bottom: none;
+        }
+        
+        .next-steps li:before {
+            content: "✓";
+            color: var(--accent);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .thank-you-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .logo-text {
+                font-size: 1.4rem;
+            }
+            
+            .logo-img {
+                height: 36px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-697276669"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-697276669');
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="thank-you-card">
+            <div class="logo-container">
+                <img src="homesmart-logo.png" alt="Home Smart Logo" class="logo-img">
+                <div class="logo-text">Rebate<span>AZ</span></div>
+            </div>
+            
+            <div class="success-icon">✓</div>
+            
+            <h1>Thank You!</h1>
+            <p>Your information has been successfully submitted. We're excited to help you <span class="highlight">save thousands</span> on your home purchase!</p>
+            
+            <div class="next-steps">
+                <h3>What Happens Next:</h3>
+                <ul>
+                    <li>Our team will review your information within 24 hours</li>
+                    <li>We'll connect you with a licensed agent in your area</li>
+                    <li>Start your home search with rebate protection</li>
+                    <li>Receive up to 2% back at closing</li>
+                </ul>
+            </div>
+            
+            <a href="index.html" class="cta-button">Return to Home</a>
+        </div>
+    </div>
+
+    <!-- Google tag (gtag.js) event -->
+    <script>
+      gtag('event', 'ads_conversion_Book_appointment_1', {
+        // <event_parameters>
+      });
+    </script>
+</body>
+</html>
