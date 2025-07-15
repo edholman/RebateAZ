@@ -73,6 +73,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 1rem;
         }
         
         .logo-container {
@@ -104,10 +105,10 @@
         .cta-button {
             background: var(--accent);
             color: var(--dark);
-            padding: 0.65rem 1.25rem;
+            padding: 0.5rem 1rem;
             border-radius: 6px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: all 0.3s ease;
             box-shadow: 0 2px 8px rgba(242, 169, 0, 0.3);
             border: none;
@@ -350,14 +351,14 @@
         
         .testimonial-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
             margin-top: 3rem;
         }
         
         .testimonial {
             background: rgba(255,255,255,0.1);
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: 10px;
             transition: transform 0.3s ease;
         }
@@ -369,7 +370,8 @@
         .testimonial p {
             color: rgba(255,255,255,0.9);
             font-style: italic;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
         }
         
         .testimonial-author {
@@ -377,48 +379,94 @@
             color: var(--accent);
         }
         
+        /* FAQ Section */
+        .faq {
+            padding: 5rem 0;
+            background: white;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+        
+        .faq-item {
+            background: white;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            background: var(--light);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background: rgba(248, 249, 250, 0.8);
+        }
+        
+        .faq-question h3 {
+            margin: 0;
+            color: var(--primary);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .faq-toggle {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+        
+        .faq-answer p {
+            margin: 0;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
         /* Contact Form */
         .contact {
             padding: 5rem 0;
             background: var(--light);
         }
         
-        form {
+        .ghl-form-container {
             max-width: 600px;
             margin: 2rem auto 0;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--dark);
-        }
-        
-        input, textarea, select {
-            width: 100%;
-            padding: 0.85rem 1rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 0.95rem;
-            transition: border-color 0.3s ease;
-        }
-        
-        input:focus, textarea:focus, select:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(242, 169, 0, 0.2);
-        }
-        
-        button[type="submit"] {
-            width: 100%;
-            padding: 1rem;
-            font-size: 1rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
         }
         
         /* Footer */
@@ -516,8 +564,8 @@
             }
             
             .cta-button {
-                padding: 0.6rem 1rem;
-                font-size: 0.85rem;
+                padding: 0.4rem 0.7rem;
+                font-size: 0.75rem;
             }
             
             .calculator-container,
@@ -572,7 +620,7 @@
                     <img src="homesmart-logo.png" alt="Home Smart Logo" class="logo-img">
                     <div class="logo-text">Rebate<span>AZ</span></div>
                 </div>
-                <a href="#contact" class="cta-button">Get Your Rebate</a>
+                <a href="#contact" class="cta-button">Get Rebate</a>
             </nav>
         </div>
     </header>
@@ -598,7 +646,7 @@
                         <label for="price">Home Price ($)</label>
                         <span id="price-value" class="calculator-output">$300,000</span>
                     </div>
-                    <input type="range" id="price" min="100000" max="2000000" step="10000" value="300000">
+                    <input type="range" id="price" min="200000" max="2000000" step="10000" value="300000">
                 </div>
                 
                 <div class="calculator-results">
@@ -637,7 +685,7 @@
         </div>
     </section>
 
-    <section class="how-it-works">
+    <section id="how-it-works" class="how-it-works">
         <div class="container">
             <div class="section-title">
                 <h2>How It Works</h2>
@@ -660,7 +708,7 @@
         </div>
     </section>
 
-    <section class="testimonials">
+    <section id="testimonials" class="testimonials">
         <div class="container">
             <div class="section-title">
                 <h2>We Hear You</h2>
@@ -689,43 +737,127 @@
                 <p>Complete this form and we'll contact you within 24 hours to begin your rebate process</p>
             </div>
             
-            <form>
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" required placeholder="John Smith">
+            <div class="ghl-form-container">
+                <iframe
+                    src="https://api.leadconnectorhq.com/widget/form/VNlKH6jeLLys1RdpJZL9"
+                    style="width:100%;height:783px;border:none;border-radius:8px"
+                    id="inline-VNlKH6jeLLys1RdpJZL9" 
+                    data-layout="{'id':'INLINE'}"
+                    data-trigger-type="alwaysShow"
+                    data-trigger-value=""
+                    data-activation-type="alwaysActivated"
+                    data-activation-value=""
+                    data-deactivation-type="neverDeactivate"
+                    data-deactivation-value=""
+                    data-form-name="Rebate AZ"
+                    data-height="783"
+                    data-layout-iframe-id="inline-VNlKH6jeLLys1RdpJZL9"
+                    data-form-id="VNlKH6jeLLys1RdpJZL9"
+                    title="Rebate AZ">
+                </iframe>
+            </div>
+            <script src="https://link.msgsndr.com/js/form_embed.js"></script>
+        </div>
+    </section>
+
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Get answers to the most common questions about our rebate program</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How much can I save with the RebateAZ program?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can receive up to 2% of your home's purchase price back at closing. For example, on a $400,000 home, that's $8,000 back in your pocket! The exact amount depends on the commission structure and your specific transaction.</p>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" required placeholder="john@example.com">
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Is there a minimum purchase price to qualify?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>While there's no strict minimum, homes under $300,000 or transactions where the seller pays less than 3.5% buyer broker commission will receive a reduced rebate. The minimum buyer broker compensation is $4,500 or 1.5% of the sales price, whichever is higher.</p>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="phone">Phone</label>
-                    <input type="tel" id="phone" placeholder="(520) 900-1990">
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do I still get full service with a rebate agent?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! You'll work with licensed, experienced agents who provide complete real estate services including home searches, negotiations, contract management, and closing coordination. The only difference is you get money back at closing.</p>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="location">Target Area</label>
-                    <select id="location">
-                        <option value="">Select an area</option>
-                        <option value="phoenix">Phoenix Metro</option>
-                        <option value="tucson">Tucson</option>
-                        <option value="flagstaff">Flagstaff</option>
-                        <option value="sedona">Sedona</option>
-                        <option value="prescott">Prescott</option>
-                        <option value="other">Other Arizona Area</option>
-                    </select>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>When do I receive my rebate?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Your rebate is credited to your settlement statement at closing. You'll see the credit applied to reduce your closing costs or cash needed to close. Rebates are not paid before the successful completion of your home purchase.</p>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="timeline">When do you plan to buy?</label>
-                    <select id="timeline">
-                        <option value="">Select timeline</option>
-                        <option value="1month">Within 1 month</option>
-                        <option value="3months">1-3 months</option>
-                        <option value="6months">3-6 months</option>
-                        <option value="looking">Just looking</option>
-                    </select>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Are there any restrictions on how I can use the rebate?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can use your rebate to reduce closing costs, buy down your interest rate, or receive cash back at closing (subject to loan program guidelines). Some loan programs have restrictions on interested party contributions, so consult with your lender about specific guidelines.</p>
+                    </div>
                 </div>
-                <button type="submit" class="cta-button">Get My Rebate</button>
-            </form>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What if the seller doesn't pay buyer broker commission?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>If the seller doesn't pay buyer broker commission, you'll be responsible for the minimum buyer broker compensation of $4,500 or 1.5% of the sales price, whichever is higher. Your agent will discuss this with you before writing any offers.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How long is the rebate program valid?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The current rebate program is valid through December 31, 2025, or until the expiration of your signed buyer broker agreement with the participating agent, whichever comes first.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can I use the rebate program for investment properties?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! The rebate program is available for primary residences, second homes, and investment properties. The same rebate structure applies regardless of the property type.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What areas of Arizona do you serve?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We serve buyers throughout Arizona, including Phoenix, Scottsdale, Tempe, Mesa, Chandler, Glendale, Tucson, and surrounding areas. Contact us to confirm coverage in your specific area.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -738,9 +870,10 @@
             
             <div class="footer-links">
                 <a href="#contact">Get Started</a>
-                <a href="#">How It Works</a>
-                <a href="#">Testimonials</a>
-                <a href="#">FAQ</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#faq">FAQ</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms & Conditions</a>
             </div>
             
             <p>© 2025 Home Smart.</p>
@@ -777,13 +910,35 @@
         // Add event listener
         priceSlider.addEventListener('input', calculateRebate);
         
+        // FAQ functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't already active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+        
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
     </script>
