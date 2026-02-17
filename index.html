@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RebateAZ | Get Up To 2% Back When Buying a Home in Arizona</title>
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-P53NZTKK');</script>
+    <!-- End Google Tag Manager -->
+    
     <style>
         /* Modern CSS with refined styling */
         :root {
@@ -611,18 +620,13 @@
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-697276669"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'AW-697276669');
-    </script>
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P53NZTKK"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <header>
         <div class="container">
             <nav>
@@ -887,7 +891,7 @@
             </div>
             
             <p>© 2025 Home Smart.</p>
-            <p>Contact: info@rebateaz.com | (520) 900-1990</p>
+            <p>Contact: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c5acaba3aa85b7a0a7a4b5a1b4efa2aeac">[email&#160;protected]</a> | (520) 900-1990</p>
             
             <div class="disclaimer">
                 <p><strong>Disclaimer:</strong> The rebate figures presented on this website are based on a seller paid buyer broker compensation of 3-4% of the sales price. If the seller paid buyer broker compensation is less than 3.5% of the sales price, your rebate will be less than 2%. The minimum buyer broker compensation amount for the agents participating in this program is 1.5% or $4,500 whichever is higher. If your purchase price is under $300,000 or the seller pays less than a 3.5% buyer broker commission, your rebate will be less than 2%. If the seller does not pay a buyer broker commission, the buyer will fulfill the minimum buyer broker compensation amounts of $4,500 or 1.5% of the sales price, whichever is higher. Depending upon specific loan programs or financing, rebate figures may also be affected based on interested party contribution guidelines, please consult with a lender regarding program guidelines. All rebates are credited to the buyers settlement statement upon a successful close of escrow and not before. Rebate program valid to 12/31/2025 or until expiration of signed buyer broker agreement with participating agent.</p>
@@ -895,7 +899,7 @@
         </div>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Simplified Rebate Calculator
         const priceSlider = document.getElementById('price');
         const priceValue = document.getElementById('price-value');
@@ -912,6 +916,14 @@
             // Update display
             priceValue.textContent = formatCurrency(price);
             rebateAmount.textContent = formatCurrency(rebate);
+            
+            // Push event to dataLayer for GTM
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'calculator_update',
+                'home_price': price,
+                'rebate_amount': rebate
+            });
         }
 
         // Initialize calculator
@@ -934,11 +946,19 @@
                 // Open clicked item if it wasn't already active
                 if (!isActive) {
                     faqItem.classList.add('active');
+                    
+                    // Track FAQ open in GTM
+                    const questionText = this.querySelector('h3')?.textContent || 'FAQ opened';
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({
+                        'event': 'faq_open',
+                        'faq_question': questionText
+                    });
                 }
             });
         });
         
-        // Smooth scrolling for anchor links
+        // Smooth scrolling for anchor links and track clicks
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -948,7 +968,57 @@
                     targetElement.scrollIntoView({
                         behavior: 'smooth'
                     });
+                    
+                    // Track navigation clicks in GTM
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({
+                        'event': 'navigation_click',
+                        'link_text': this.textContent.trim(),
+                        'link_target': targetId
+                    });
                 }
+            });
+        });
+
+        // Track form views and interactions
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        window.dataLayer = window.dataLayer || [];
+                        window.dataLayer.push({
+                            'event': 'form_view',
+                            'form_name': 'contact_form'
+                        });
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            observer.observe(contactSection);
+        }
+
+        // Track CTA button clicks specifically
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function() {
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    'event': 'cta_click',
+                    'cta_text': this.textContent.trim(),
+                    'cta_location': this.closest('section')?.id || 'header'
+                });
+            });
+        });
+
+        // Track outbound links
+        document.querySelectorAll('a[href^="http"]:not([href*="' + window.location.hostname + '"])').forEach(link => {
+            link.addEventListener('click', function() {
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    'event': 'outbound_click',
+                    'link_url': this.href,
+                    'link_text': this.textContent.trim()
+                });
             });
         });
     </script>
