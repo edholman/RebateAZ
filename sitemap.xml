@@ -169,18 +169,5 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- Legal pages -->
-  <url>
-    <loc>https://rebateaz.com/privacy.html</loc>
-    <lastmod>2026-02-26</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://rebateaz.com/terms.html</loc>
-    <lastmod>2026-02-26</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
 
 </urlset>
