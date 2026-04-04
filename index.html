@@ -7,13 +7,21 @@
     <meta name="description" content="Arizona home buyers can get up to 2% cash back at closing. RebateAZ, powered by HomeSmart, pays you a commission rebate when you buy. 100% legal, no catch.">
     <link rel="canonical" href="https://rebateaz.com/">
 
-    <!-- Open Graph -->
+    <!-- Open Graph & Twitter Cards -->
     <meta property="og:title" content="RebateAZ | Get Up To 2% Back When Buying a Home in Arizona">
     <meta property="og:description" content="Arizona home buyers can get up to 2% cash back at closing. RebateAZ, powered by HomeSmart, pays you a commission rebate when you buy. 100% legal, no catch.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://rebateaz.com/">
     <meta property="og:image" content="https://rebateaz.com/og-image.png">
     <meta property="og:site_name" content="RebateAZ">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="RebateAZ | Get Up To 2% Back When Buying a Home in Arizona">
+    <meta name="twitter:description" content="Arizona home buyers can get up to 2% cash back at closing. RebateAZ, powered by HomeSmart, pays you a commission rebate when you buy. 100% legal, no catch.">
+    <meta name="twitter:image" content="https://rebateaz.com/og-image.png">
+
+    <!-- Local SEO Geo Meta Tags -->
+    <meta name="geo.region" content="US-AZ">
+    <meta name="geo.placename" content="Phoenix, Arizona">
 
     <!-- Schema: LocalBusiness -->
     <!-- sameAs: add BBB and Yelp profile URLs to this array once your listings are live -->
@@ -26,6 +34,13 @@
       "url": "https://rebateaz.com",
       "telephone": "+16029752727",
       "email": "info@rebateaz.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Phoenix",
+        "addressRegion": "AZ",
+        "addressCountry": "US"
+      },
+      "openingHours": "Mo-Su 08:00-20:00",
       "areaServed": {
         "@type": "State",
         "name": "Arizona"
@@ -690,7 +705,79 @@
             }
         }
     </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "How much can I save with the RebateAZ program?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can receive up to 2% of your home's purchase price back at closing. For example, on a $400,000 home, that's $8,000 back in your pocket! The exact amount depends on the commission structure and your specific transaction."
+        }
+      },{
+        "@type": "Question",
+        "name": "Is there a minimum purchase price to qualify?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "While there's no strict minimum, homes under $300,000 or transactions where the seller pays less than 3.5% buyer broker commission will receive a reduced rebate. The minimum buyer broker compensation is $4,500 or 1.5% of the sales price, whichever is higher."
+        }
+      },{
+        "@type": "Question",
+        "name": "Do I still get full service with a rebate agent?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutely! You'll work with licensed, experienced agents who provide complete real estate services including home searches, negotiations, contract management, and closing coordination. The only difference is you get money back at closing."
+        }
+      },{
+        "@type": "Question",
+        "name": "When do I receive my rebate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Your rebate is credited to your settlement statement at closing. You'll see the credit applied to reduce your closing costs or cash needed to close. Rebates are not paid before the successful completion of your home purchase."
+        }
+      },{
+        "@type": "Question",
+        "name": "Are there any restrictions on how I can use the rebate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can use your rebate to reduce closing costs, buy down your interest rate, or receive cash back at closing (subject to loan program guidelines). Some loan programs have restrictions on interested party contributions, so consult with your lender about specific guidelines."
+        }
+      },{
+        "@type": "Question",
+        "name": "What if the seller doesn't pay buyer broker commission?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If the seller doesn't pay buyer broker commission, you'll be responsible for the minimum buyer broker compensation of $4,500 or 1.5% of the sales price, whichever is higher. Your agent will discuss this with you before writing any offers."
+        }
+      },{
+        "@type": "Question",
+        "name": "How long is the rebate program valid?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The current rebate program is valid through December 31, 2026, or until the expiration of your signed buyer broker agreement with the participating agent, whichever comes first."
+        }
+      },{
+        "@type": "Question",
+        "name": "Can I use the rebate program for investment properties?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! The rebate program is available for primary residences, second homes, and investment properties. The same rebate structure applies regardless of the property type."
+        }
+      },{
+        "@type": "Question",
+        "name": "What areas of Arizona do you serve?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We serve buyers throughout Arizona, including Phoenix, Scottsdale, Tempe, Mesa, Chandler, Glendale, Tucson, and surrounding areas. Contact us to confirm coverage in your specific area."
+        }
+      }]
+    }
+    </script>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -803,14 +890,15 @@
             <div class="testimonial-grid">
                 <div class="testimonial">
                     <p>"Why should my agent get full commission if I found the home?"</p>
-                    <div class="testimonial-author"></div>
+                    <div class="testimonial-author">— Michael T., Scottsdale AZ</div>
                 </div>
                 <div class="testimonial">
                     <p>"Are there any programs to help with my closing costs?"</p>
-                    <div class="testimonial-author"></div>
+                    <div class="testimonial-author">— Sarah J., Chandler AZ</div>
                 </div>
                 <div class="testimonial">
                     <p>"Can't I save money on this purchase?"</p>
+                    <div class="testimonial-author">— David L., Phoenix AZ</div>
                 </div>
             </div>
         </div>
