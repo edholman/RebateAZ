@@ -1277,6 +1277,22 @@
                 });
             });
         });
+
+        // GoHighLevel GTM Translation Listener
+        window.addEventListener("message", function(event) {
+            // HighLevel uses "form-submit" to indicate successful conversion
+            if (event.data && event.data.type === "form-submit") {
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    'event': 'generate_lead',
+                    'form_name': 'gohighlevel_contact'
+                });
+            }
+        });
     </script>
+    
+    <div class="mobile-sticky-cta">
+        <a href="#contact" class="cta-button">Calculate My Rebate</a>
+    </div>
 </body>
 </html>

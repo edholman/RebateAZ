@@ -315,12 +315,67 @@ footer {
   margin: 1.75rem 0;
 }
 .blog-cta {
-  border: 1px solid rgba(0,0,0,0.12);
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin-top: 2.5rem;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.04);
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  margin-top: 3rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  text-align: center;
+  color: white;
 }
-.blog-cta strong { color: var(--dark); }
-.blog-cta .cta-button { display: inline-block; margin-top: 0.75rem; }
+.blog-cta strong {
+  color: white;
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.blog-cta p {
+  color: rgba(255,255,255,0.9);
+  max-width: 500px;
+  margin: 0 auto 1.5rem auto;
+}
+.blog-cta .cta-button {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 50px;
+  background: var(--accent);
+  color: var(--dark);
+  box-shadow: 0 4px 15px rgba(242, 169, 0, 0.4);
+}
+.blog-cta .cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(242, 169, 0, 0.6);
+}
+
+/* Mobile Sticky CTA */
+.mobile-sticky-cta {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-sticky-cta {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 1rem;
+    box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+    z-index: 9999;
+    text-align: center;
+  }
+  .mobile-sticky-cta .cta-button {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    border-radius: 8px;
+  }
+  /* Add padding to body so sticky CTA doesn't cover footer content */
+  body {
+    padding-bottom: 80px;
+  }
+}
 
