@@ -283,12 +283,14 @@ footer {
   box-shadow: 0 5px 15px rgba(0,0,0,0.05);
   border: 1px solid rgba(0,0,0,0.05);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
 }
 .blog-card:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.10); }
 .blog-card .meta { font-size: 0.85rem; color: var(--gray); margin-bottom: 0.75rem; }
 .blog-card h2 { font-size: 1.15rem; margin-bottom: 0.6rem; color: var(--dark); }
-.blog-card p { margin-bottom: 1rem; }
-.blog-card a { font-weight: 700; color: var(--secondary); }
+.blog-card p { margin-bottom: 1rem; flex-grow: 1; }
+.blog-card a { font-weight: 700; color: var(--secondary); margin-top: auto; align-self: flex-start; }
 
 .blog-post {
   padding: 3.5rem 0 5rem;
