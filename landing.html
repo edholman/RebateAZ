@@ -826,6 +826,22 @@
         </div>
     </section>
 
+    <script>
+        // Inject Google Ads {loc_physical_ms} city into hero headline
+        (function () {
+            const params = new URLSearchParams(window.location.search);
+            const raw = params.get('city') || '';
+            // Guard against un-substituted ValueTrack literal or empty string
+            const city = (raw && raw !== '{loc_physical_ms}')
+                ? raw.charAt(0).toUpperCase() + raw.slice(1)   // basic title-case
+                : 'Arizona';
+            const el = document.getElementById('dynamic-headline');
+            if (el) {
+                el.textContent = 'Get Up To 2% Cash Back When Buying a Home in ' + city;
+            }
+        })();
+    </script>
+
     <section class="calculator">
         <div class="container">
             <div class="calculator-container">
