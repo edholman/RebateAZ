@@ -26,10 +26,19 @@
     
     <style>
         .partner-hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1589829085413-56de8ae18c73?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80') no-repeat center center/cover;
+            background:
+                linear-gradient(135deg, rgba(10, 30, 60, 0.97) 0%, rgba(20, 52, 100, 0.95) 50%, rgba(10, 30, 60, 0.97) 100%),
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 40px,
+                    rgba(242, 169, 0, 0.04) 40px,
+                    rgba(242, 169, 0, 0.04) 41px
+                );
             color: white;
             padding: 6rem 0;
             text-align: center;
+            border-bottom: 4px solid #f2a900;
         }
         .partner-hero h1 { font-size: 2.8rem; margin-bottom: 1rem; color: #fff;}
         .partner-hero p { font-size: 1.25rem; max-width: 800px; margin: 0 auto; color: #f8f9fa;}
@@ -94,6 +103,7 @@
 
     <section class="partner-hero">
         <div class="container">
+            <div style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.9;">⚖️</div>
             <h1>Fedora Legal Services</h1>
             <p>Arizona Supreme Court Certified Legal Document Preparers</p>
         </div>
