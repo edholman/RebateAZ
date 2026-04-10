@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RebateAZ | Get Up To 2% Back When Buying a Home in Arizona</title>
-    <meta name="description" content="Arizona home buyers can get up to 2% cash back at closing. RebateAZ, powered by HomeSmart, pays you a commission rebate when you buy. 100% legal, no catch.">
+    <title>RebateAZ | Get $8,000–$20,000 Back at Closing When Buying a Home in Arizona</title>
+    <meta name="description" content="Arizona home buyers can get $8,000–$20,000 back at closing. RebateAZ, powered by HomeSmart, rebates part of the agent commission directly to you. 100% legal, no catch.">
     <link rel="canonical" href="https://rebateaz.com/">
-    <link rel="preload" as="image" href="/hero-bg.jpg">
+    <link rel="preload" as="image" href="/hero-bg.jpg" fetchpriority="high">
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="apple-touch-icon" href="/favicon.png">
 
     <!-- Open Graph & Twitter Cards -->
-    <meta property="og:title" content="RebateAZ | Get Up To 2% Back When Buying a Home in Arizona">
-    <meta property="og:description" content="Arizona home buyers can get up to 2% cash back at closing. RebateAZ, powered by HomeSmart, pays you a commission rebate when you buy. 100% legal, no catch.">
+    <meta property="og:title" content="RebateAZ | Get $8,000–$20,000 Back at Closing When Buying a Home in Arizona">
+    <meta property="og:description" content="Arizona home buyers can get $8,000–$20,000 back at closing. RebateAZ, powered by HomeSmart, rebates part of the agent commission directly to you. 100% legal, no catch.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://rebateaz.com/">
     <meta property="og:image" content="https://rebateaz.com/og-image.png">
@@ -200,6 +200,7 @@
             max-width: 600px;
             color: white;
             animation: fadeInUp 0.8s ease;
+            will-change: transform;
         }
         
         .hero h1 {
@@ -811,14 +812,14 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1 id="dynamic-headline">Get Up To 2% Cash Back When Buying a Home in Arizona</h1>
-                <p>Keep thousands in your pocket at closing with our real estate commission rebate program.</p>
-                <a href="#contact" class="cta-button">Claim Your Rebate Today</a>
-                
+                <h1 id="dynamic-headline">Get $8,000–$20,000 Back at Closing When You Buy a Home in Arizona</h1>
+                <p>On a typical $400K–$800K home, Arizona's buyer rebate program returns a portion of the agent's commission directly to you at closing.</p>
+                <a href="#contact" class="cta-button">Calculate My Rebate</a>
+
                 <div style="margin-top: 2rem; display: flex; justify-content: center; gap: 1.5rem; align-items: center; opacity: 0.9; flex-wrap: wrap;">
-                    <span style="color: #fff; font-size: 0.9rem; font-weight: 500;">✓ 5-Star Rated</span>
+                    <span style="color: #fff; font-size: 0.9rem; font-weight: 500;">✓ 5-Star Google Rated</span>
                     <span style="color: rgba(255,255,255,0.4);" class="hide-mobile">|</span>
-                    <span style="color: #fff; font-size: 0.9rem; font-weight: 500;">✓ AZ Licensed Agents</span>
+                    <span style="color: #fff; font-size: 0.9rem; font-weight: 500;">✓ Licensed AZ REALTOR®</span>
                     <span style="color: rgba(255,255,255,0.4);" class="hide-mobile">|</span>
                     <span style="color: #fff; font-size: 0.9rem; font-weight: 500;">✓ Fast & Secure</span>
                 </div>
@@ -1329,7 +1330,7 @@
                 const formattedCity = cityFilter.charAt(0).toUpperCase() + cityFilter.slice(1);
                 const headline = document.getElementById('dynamic-headline');
                 if(headline) {
-                    headline.textContent = `Get Up To 2% Cash Back When Buying a Home in ${formattedCity}`;
+                    headline.textContent = `Get $8,000–$20,000 Back at Closing When You Buy a Home in ${formattedCity}`;
                 }
             }
         });
