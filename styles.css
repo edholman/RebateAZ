@@ -28,7 +28,7 @@ a { text-decoration: none; color: inherit; }
 header {
   background: linear-gradient(135deg, var(--primary), var(--secondary));
   color: white;
-  padding: 1.25rem 0;
+  padding: 0.65rem 0;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -49,11 +49,11 @@ nav {
   gap: 1rem;
 }
 
-.logo-container { display: flex; align-items: center; gap: 1rem; }
-.logo-img { height: 38px; width: auto; transition: transform 0.3s ease; }
+.logo-container { display: flex; align-items: center; gap: 0.6rem; }
+.logo-img { height: 28px; width: auto; transition: transform 0.3s ease; }
 .logo-img:hover { transform: scale(1.05); }
 
-.logo-text { font-weight: 700; font-size: 1.4rem; letter-spacing: -0.5px; }
+.logo-text { font-weight: 700; font-size: 1.1rem; letter-spacing: -0.5px; }
 .logo-text span { color: var(--accent); }
 
 .cta-button {
@@ -245,9 +245,9 @@ footer {
   .hero { height: auto; padding: 6rem 0; min-height: auto; }
   .hero h1 { font-size: 2rem; }
   .hero p { font-size: 1rem; }
-  .logo-container { flex-direction: row; align-items: center; gap: 0.8rem; }
-  .logo-img { height: 32px; }
-  .logo-text { font-size: 1.2rem; }
+  .logo-container { flex-direction: row; align-items: center; gap: 0.5rem; }
+  .logo-img { height: 24px; }
+  .logo-text { font-size: 1rem; }
   .cta-button { padding: 0.4rem 0.7rem; font-size: 0.75rem; }
   .calculator-container, .benefit-card, .testimonial { padding: 1.5rem; }
   .step { padding-left: 4.5rem; }
