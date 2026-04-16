@@ -195,18 +195,4 @@
     <priority>0.7</priority>
   </url>
 
-
-  <url>
-    <loc>https://rebateaz.com/privacy.html</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://rebateaz.com/terms.html</loc>
-    <lastmod>2026-04-04</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
 </urlset>
