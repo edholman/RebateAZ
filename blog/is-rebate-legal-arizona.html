@@ -111,6 +111,7 @@
     gtag('js', new Date());
     gtag('config', 'AW-697276669');
   </script>
+  <link rel="stylesheet" href="/assets/lead-form.css">
 </head>
 
 <body>
@@ -220,7 +221,40 @@
         Tell us your purchase price and whether you're financing or paying cash.
         We’ll outline how a rebate would typically be structured for your situation.
       </p>
-      <a href="/#contact" class="cta-button">Get Rebate Details &rarr;</a>
+      <a href="#get-started" class="cta-button">Get Rebate Details &rarr;</a>
+    </div>
+
+    <h2 id="get-started">Get Started</h2>
+    <p>Tell us what you are looking for and we will text you shortly with a realistic rebate estimate and answers to your questions.</p>
+
+    <div class="lead-card">
+      <form class="lead-form" data-form-name="blog_rebate_legal" data-lang="en" novalidate>
+        <div class="lead-row">
+          <div><label for="blog-rebate-legal-first">First name</label><input id="blog-rebate-legal-first" type="text" name="first_name" autocomplete="given-name"></div>
+          <div><label for="blog-rebate-legal-last">Last name</label><input id="blog-rebate-legal-last" type="text" name="last_name" autocomplete="family-name"></div>
+        </div>
+        <div class="lead-row">
+          <div><label for="blog-rebate-legal-phone">Mobile phone</label><input id="blog-rebate-legal-phone" type="tel" name="phone" autocomplete="tel" inputmode="tel" required></div>
+          <div><label for="blog-rebate-legal-email">Email</label><input id="blog-rebate-legal-email" type="email" name="email" autocomplete="email"></div>
+        </div>
+        <label for="blog-rebate-legal-when">When are you hoping to buy? <span class="opt">(optional)</span></label>
+        <select id="blog-rebate-legal-when" name="timeline">
+              <option value="">Select one</option>
+              <option>As soon as possible</option>
+              <option>Within 3 months</option>
+              <option>3 to 6 months</option>
+              <option>6 months or more</option>
+              <option>Just researching</option>
+        </select>
+        <label for="blog-rebate-legal-msg">Anything we should know? <span class="opt">(optional)</span></label>
+        <textarea id="blog-rebate-legal-msg" name="message" maxlength="1000"></textarea>
+        <div class="lead-hp" aria-hidden="true"><label for="blog-rebate-legal-website">Website</label><input id="blog-rebate-legal-website" type="text" name="website" tabindex="-1" autocomplete="off"></div>
+        <label class="lead-consent"><input type="checkbox" name="consent" value="yes"><span class="lead-consent-text">By checking this box, I agree to receive calls and text messages from RebateAZ at the number provided, including messages sent using automated technology, about my home search. Consent is not a condition of purchase. Msg &amp; data rates may apply. Msg frequency varies. Reply STOP to opt out, HELP for help. See our <a href="/privacy.html">Privacy Policy</a> and <a href="/terms.html">Terms</a>.</span></label>
+        <button type="submit">Get My Rebate</button>
+        <div class="lead-error" role="alert" hidden></div>
+      </form>
+      <div class="lead-success" hidden><strong>Thanks! We got your info.</strong><p>We will text you shortly from (602) 975-2727. If it is after 9 PM, we will text you in the morning.</p></div>
+      <p class="lead-alt">Prefer to talk? <a href="sms:+16029752727">Text</a> or <a href="tel:+16029752727">call (602) 975-2727</a></p>
     </div>
 
   </div>
