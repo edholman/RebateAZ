@@ -147,6 +147,7 @@
     gtag('js', new Date());
     gtag('config', 'AW-697276669');
   </script>
+  <link rel="stylesheet" href="/assets/lead-form.css">
 </head>
 
 <body>
@@ -274,26 +275,36 @@
     <h2 id="get-started">Get Started</h2>
     <p>Fill out the form and we will contact you within 24 hours with this month's best-priced homes, and register you with the builder before your visit. Prefer to talk? <a href="sms:+16029752727">Text</a> or <a href="tel:+16029752727">call (602) 975-2727</a>.</p>
 
-    <div class="ghl-form-container">
-      <iframe
-        src="https://api.leadconnectorhq.com/widget/form/CkAVx68BjPz4JHNbL6vo"
-        style="width:100%;height:783px;border:none;border-radius:8px"
-        id="inline-VNlKH6jeLLys1RdpJZL9"
-        data-layout="{'id':'INLINE'}"
-        data-trigger-type="alwaysShow"
-        data-trigger-value=""
-        data-activation-type="alwaysActivated"
-        data-activation-value=""
-        data-deactivation-type="neverDeactivate"
-        data-deactivation-value=""
-        data-form-name="Rebate AZ"
-        data-height="783"
-        data-layout-iframe-id="inline-VNlKH6jeLLys1RdpJZL9"
-        data-form-id="VNlKH6jeLLys1RdpJZL9"
-        title="Rebate AZ">
-      </iframe>
+    <div class="lead-card">
+      <form class="lead-form" data-form-name="new_homes_asante" data-lang="en" novalidate>
+        <div class="lead-row">
+          <div><label for="new-homes-asante-first">First name</label><input id="new-homes-asante-first" type="text" name="first_name" autocomplete="given-name"></div>
+          <div><label for="new-homes-asante-last">Last name</label><input id="new-homes-asante-last" type="text" name="last_name" autocomplete="family-name"></div>
+        </div>
+        <div class="lead-row">
+          <div><label for="new-homes-asante-phone">Mobile phone</label><input id="new-homes-asante-phone" type="tel" name="phone" autocomplete="tel" inputmode="tel" required></div>
+          <div><label for="new-homes-asante-email">Email</label><input id="new-homes-asante-email" type="email" name="email" autocomplete="email"></div>
+        </div>
+        <label for="new-homes-asante-when">When are you hoping to buy? <span class="opt">(optional)</span></label>
+        <select id="new-homes-asante-when" name="timeline">
+              <option value="">Select one</option>
+              <option>As soon as possible</option>
+              <option>Within 3 months</option>
+              <option>3 to 6 months</option>
+              <option>6 months or more</option>
+              <option>Just researching</option>
+        </select>
+        <label for="new-homes-asante-msg">Anything we should know? <span class="opt">(optional)</span></label>
+        <textarea id="new-homes-asante-msg" name="message" maxlength="1000"></textarea>
+          <input type="hidden" name="city" value="Surprise">
+        <div class="lead-hp" aria-hidden="true"><label for="new-homes-asante-website">Website</label><input id="new-homes-asante-website" type="text" name="website" tabindex="-1" autocomplete="off"></div>
+        <label class="lead-consent"><input type="checkbox" name="consent" value="yes"><span class="lead-consent-text">By checking this box, I agree to receive calls and text messages from RebateAZ at the number provided, including messages sent using automated technology, about my home search. Consent is not a condition of purchase. Msg &amp; data rates may apply. Msg frequency varies. Reply STOP to opt out, HELP for help. See our <a href="/privacy.html">Privacy Policy</a> and <a href="/terms.html">Terms</a>.</span></label>
+        <button type="submit">Get My Rebate</button>
+        <div class="lead-error" role="alert" hidden></div>
+      </form>
+      <div class="lead-success" hidden><strong>Thanks! We got your info.</strong><p>We will text you shortly from (602) 975-2727. If it is after 9 PM, we will text you in the morning.</p></div>
+      <p class="lead-alt">Prefer to talk? <a href="sms:+16029752727">Text</a> or <a href="tel:+16029752727">call (602) 975-2727</a></p>
     </div>
-    <script src="https://link.msgsndr.com/js/form_embed.js"></script>
 
     <div class="blog-cta">
       <strong>Interested in Asante?</strong>
@@ -325,5 +336,6 @@
   </div>
 </footer>
 
+<script src="/assets/lead-form.js" defer></script>
 </body>
 </html>

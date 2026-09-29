@@ -94,6 +94,7 @@
     gtag('js', new Date());
     gtag('config', 'AW-697276669');
   </script>
+  <link rel="stylesheet" href="/assets/lead-form.css">
 </head>
 <body>
 
@@ -165,26 +166,35 @@
                 <p>Fill out our simple form below to claim your up to 2% cash back rebate to help fund your real estate legal preparations.</p>
             </div>
             
-            <div class="ghl-form-container">
-                <iframe
-                    src="https://api.leadconnectorhq.com/widget/form/CkAVx68BjPz4JHNbL6vo"
-                    style="width:100%;height:783px;border:none;border-radius:8px"
-                    id="inline-VNlKH6jeLLys1RdpJZL9" 
-                    data-layout="{'id':'INLINE'}"
-                    data-trigger-type="alwaysShow"
-                    data-trigger-value=""
-                    data-activation-type="alwaysActivated"
-                    data-activation-value=""
-                    data-deactivation-type="neverDeactivate"
-                    data-deactivation-value=""
-                    data-form-name="Rebate AZ"
-                    data-height="783"
-                    data-layout-iframe-id="inline-VNlKH6jeLLys1RdpJZL9"
-                    data-form-id="VNlKH6jeLLys1RdpJZL9"
-                    title="Rebate AZ">
-                </iframe>
+            <div class="lead-card">
+              <form class="lead-form" data-form-name="partner_fedora" data-lang="en" novalidate>
+                <div class="lead-row">
+                  <div><label for="partner-fedora-first">First name</label><input id="partner-fedora-first" type="text" name="first_name" autocomplete="given-name"></div>
+                  <div><label for="partner-fedora-last">Last name</label><input id="partner-fedora-last" type="text" name="last_name" autocomplete="family-name"></div>
+                </div>
+                <div class="lead-row">
+                  <div><label for="partner-fedora-phone">Mobile phone</label><input id="partner-fedora-phone" type="tel" name="phone" autocomplete="tel" inputmode="tel" required></div>
+                  <div><label for="partner-fedora-email">Email</label><input id="partner-fedora-email" type="email" name="email" autocomplete="email"></div>
+                </div>
+                <label for="partner-fedora-when">When are you hoping to buy? <span class="opt">(optional)</span></label>
+                <select id="partner-fedora-when" name="timeline">
+                      <option value="">Select one</option>
+                      <option>As soon as possible</option>
+                      <option>Within 3 months</option>
+                      <option>3 to 6 months</option>
+                      <option>6 months or more</option>
+                      <option>Just researching</option>
+                </select>
+                <label for="partner-fedora-msg">Anything we should know? <span class="opt">(optional)</span></label>
+                <textarea id="partner-fedora-msg" name="message" maxlength="1000"></textarea>
+                <div class="lead-hp" aria-hidden="true"><label for="partner-fedora-website">Website</label><input id="partner-fedora-website" type="text" name="website" tabindex="-1" autocomplete="off"></div>
+                <label class="lead-consent"><input type="checkbox" name="consent" value="yes"><span class="lead-consent-text">By checking this box, I agree to receive calls and text messages from RebateAZ at the number provided, including messages sent using automated technology, about my home search. Consent is not a condition of purchase. Msg &amp; data rates may apply. Msg frequency varies. Reply STOP to opt out, HELP for help. See our <a href="/privacy.html">Privacy Policy</a> and <a href="/terms.html">Terms</a>.</span></label>
+                <button type="submit">Get My Rebate</button>
+                <div class="lead-error" role="alert" hidden></div>
+              </form>
+              <div class="lead-success" hidden><strong>Thanks! We got your info.</strong><p>We will text you shortly from (602) 975-2727. If it is after 9 PM, we will text you in the morning.</p></div>
+              <p class="lead-alt">Prefer to talk? <a href="sms:+16029752727">Text</a> or <a href="tel:+16029752727">call (602) 975-2727</a></p>
             </div>
-            <script src="https://link.msgsndr.com/js/form_embed.js"></script>
         </div>
     </section>
 
@@ -204,5 +214,6 @@
         <a href="#contact" class="cta-button">Claim Rebate</a>
     </div>
 
+<script src="/assets/lead-form.js" defer></script>
 </body>
 </html>
