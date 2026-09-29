@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow">
+  <title>Form Test | RebateAZ</title>
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/assets/lead-form.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body style="background:#f8f9fa;">
+  <div style="max-width:640px;margin:0 auto;padding:2rem 16px;">
+    <h1 style="font-size:1.5rem;">Lead form test (not public)</h1>
+    <p>English form: redirects to the thank-you page after a successful submit.</p>
+    <div class="lead-card">
+      <form class="lead-form" data-form-name="test_page_en" data-lang="en" novalidate>
+        <div class="lead-row">
+          <div><label for="test-page-en-first">First name</label><input id="test-page-en-first" type="text" name="first_name" autocomplete="given-name"></div>
+          <div><label for="test-page-en-last">Last name</label><input id="test-page-en-last" type="text" name="last_name" autocomplete="family-name"></div>
+        </div>
+        <div class="lead-row">
+          <div><label for="test-page-en-phone">Mobile phone</label><input id="test-page-en-phone" type="tel" name="phone" autocomplete="tel" inputmode="tel" required></div>
+          <div><label for="test-page-en-email">Email <span class="opt">(optional)</span></label><input id="test-page-en-email" type="email" name="email" autocomplete="email"></div>
+        </div>
+        <label for="test-page-en-when">When are you hoping to buy? <span class="opt">(optional)</span></label>
+        <select id="test-page-en-when" name="timeline">
+              <option value="">Select one</option>
+              <option>As soon as possible</option>
+              <option>Within 3 months</option>
+              <option>3 to 6 months</option>
+              <option>6 months or more</option>
+              <option>Just researching</option>
+        </select>
+        <label for="test-page-en-msg">Anything we should know? <span class="opt">(optional)</span></label>
+        <textarea id="test-page-en-msg" name="message" maxlength="1000"></textarea>
+        <div class="lead-hp" aria-hidden="true"><label for="test-page-en-website">Website</label><input id="test-page-en-website" type="text" name="website" tabindex="-1" autocomplete="off"></div>
+        <label class="lead-consent"><input type="checkbox" name="consent" value="yes"><span class="lead-consent-text">By checking this box, I agree to receive calls and text messages from RebateAZ at the number provided, including messages sent using automated technology, about my home search. Consent is not a condition of purchase. Msg &amp; data rates may apply. Msg frequency varies. Reply STOP to opt out, HELP for help. See our <a href="/privacy.html">Privacy Policy</a> and <a href="/terms.html">Terms</a>.</span></label>
+        <button type="submit">Get My Rebate</button>
+        <div class="lead-error" role="alert" hidden></div>
+      </form>
+      <div class="lead-success" hidden><strong>Thanks! We got your info.</strong><p>We will text you shortly from (602) 975-2727. If it is after 9 PM, we will text you in the morning.</p></div>
+      <p class="lead-alt">Prefer to talk? <a href="sms:+16029752727">Text</a> or <a href="tel:+16029752727">call (602) 975-2727</a></p>
+    </div>
+    <h2 style="font-size:1.3rem;margin-top:2.5rem;">Formulario en espa&#241;ol</h2>
+    <p>Spanish form: shows the success message on the page. Submitting both with the same phone number will alert the owner the second time instead of re-texting.</p>
+    <div class="lead-card">
+      <form class="lead-form" data-form-name="test_page_es" data-lang="es" novalidate>
+        <div class="lead-row">
+          <div><label for="test-page-es-first">Nombre</label><input id="test-page-es-first" type="text" name="first_name" autocomplete="given-name"></div>
+          <div><label for="test-page-es-last">Apellido</label><input id="test-page-es-last" type="text" name="last_name" autocomplete="family-name"></div>
+        </div>
+        <div class="lead-row">
+          <div><label for="test-page-es-phone">Celular</label><input id="test-page-es-phone" type="tel" name="phone" autocomplete="tel" inputmode="tel" required></div>
+          <div><label for="test-page-es-email">Correo electr&#243;nico <span class="opt">(opcional)</span></label><input id="test-page-es-email" type="email" name="email" autocomplete="email"></div>
+        </div>
+        <label for="test-page-es-when">&#191;Cu&#225;ndo espera comprar? <span class="opt">(opcional)</span></label>
+        <select id="test-page-es-when" name="timeline">
+              <option value="">Seleccione una opci&#243;n</option>
+              <option>Lo antes posible</option>
+              <option>En los pr&#243;ximos 3 meses</option>
+              <option>De 3 a 6 meses</option>
+              <option>En 6 meses o m&#225;s</option>
+              <option>Solo estoy investigando</option>
+        </select>
+        <label for="test-page-es-msg">&#191;Algo que debamos saber? <span class="opt">(opcional)</span></label>
+        <textarea id="test-page-es-msg" name="message" maxlength="1000"></textarea>
+        <div class="lead-hp" aria-hidden="true"><label for="test-page-es-website">Website</label><input id="test-page-es-website" type="text" name="website" tabindex="-1" autocomplete="off"></div>
+        <label class="lead-consent"><input type="checkbox" name="consent" value="yes"><span class="lead-consent-text">Al marcar esta casilla, acepto recibir llamadas y mensajes de texto de RebateAZ al n&#250;mero proporcionado, incluidos mensajes enviados con tecnolog&#237;a automatizada, sobre mi b&#250;squeda de casa. El consentimiento no es una condici&#243;n de compra. Pueden aplicarse tarifas de mensajes y datos. La frecuencia de los mensajes var&#237;a. Responda STOP para cancelar, HELP para obtener ayuda. Consulte nuestra <a href="/privacy.html">Pol&#237;tica de Privacidad</a> y <a href="/terms.html">T&#233;rminos</a>.</span></label>
+        <button type="submit">Obtener Mi Reembolso</button>
+        <div class="lead-error" role="alert" hidden></div>
+      </form>
+      <div class="lead-success" hidden><strong>&#161;Gracias! Recibimos su informaci&#243;n.</strong><p>Le enviaremos un mensaje de texto pronto desde el (602) 975-2727. Si es despu&#233;s de las 9 PM, le escribiremos en la ma&#241;ana.</p></div>
+      <p class="lead-alt">&#191;Prefiere hablar? <a href="sms:+16029752727">Env&#237;enos un mensaje</a> o <a href="tel:+16029752727">llame al (602) 975-2727</a></p>
+    </div>
+  </div>
+  <script src="/assets/lead-form.js" defer></script>
+</body>
+</html>
