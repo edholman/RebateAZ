@@ -57,7 +57,13 @@
     section.block { padding: 34px 0; }
     section.block.alt-bg { background: var(--light); }
     h2.sec { font-size: 1.5rem; margin: 0 0 1rem; color: var(--navy); letter-spacing: -0.01em; }
-    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; counter-reset: s; }
+    .hook { font-size: 1.02rem; color: rgba(255,255,255,0.95); margin: 0 0 0.8rem; }
+    .card-warn { background: #fff7e0; border: 1px solid #f2d27a; border-radius: 10px; padding: 0.55rem 0.7rem; font-size: 0.85rem; color: #6b4e00; margin-bottom: 0.8rem; line-height: 1.4; }
+    .assure { text-align: center; font-size: 0.82rem; color: var(--gray); margin: 0.6rem 0 0; }
+    .why { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .why > div { background: var(--light); border-radius: 12px; padding: 1rem 1.1rem; }
+    .why b { display: block; color: var(--navy); margin-bottom: 0.3rem; font-size: 1.05rem; }
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; counter-reset: s; }
     .step { background: #fff; border-radius: 12px; padding: 1rem 1.1rem; box-shadow: 0 4px 14px rgba(0,0,0,0.06); }
     .step b { display: block; color: var(--navy); margin-bottom: 0.3rem; }
     .step b::before { counter-increment: s; content: counter(s) '. '; color: var(--gold); }
@@ -81,7 +87,9 @@
     footer { background: #0f172a; color: #cbd5e1; font-size: 0.82rem; padding: 26px 0 40px; }
     footer a { color: #e2e8f0; }
     @media (max-width: 820px) {
-      .steps, .reviews { grid-template-columns: 1fr; }
+      .steps, .reviews, .why { grid-template-columns: 1fr; }
+      .card-warn { font-size: 0.8rem; padding: 0.45rem 0.6rem; margin-bottom: 0.6rem; }
+      .card-warn .cw-more { display: none; }
       .hero .grid { grid-template-columns: 1fr; grid-template-areas: 'head' 'form' 'rest'; }
       h1 { font-size: 1.42rem; margin-bottom: 0.4rem; }
       .hero { padding: 14px 0 24px; }
@@ -110,20 +118,20 @@
     <div class="wrap grid">
       <div class="h-head">
         <span class="eyebrow">Madera &middot; Queen Creek, AZ</span>
-        <h1>Buying a new home in Madera? Get up to <span class="money">$13,000 back</span> at closing on a $650K home.</h1>
-        <p class="sub">That's up to 2% of the price, plus this month's quick move-ins and builder incentives. No cost to you.</p>
+        <h1>Buying in Madera? Get up to <span class="money">$13,000 back</span> at closing.</h1>
+        <p class="sub">The builder already pays a buyer's agent. We give up to 2% of the price back to you: $13,000 on a $650K home. No cost to you.</p>
       </div>
       <div class="h-rest">
+        <p class="hook">Bigger homes in Queen Creek with RV garages and Next Gen suites. Register with us before you visit the sales center.</p>
         <ul class="bullets">
-          <li>This month's move-in-ready homes and current builder incentives, sent by text</li>
           <li>Your own agent at the builder, not the builder's sales rep</li>
-          <li>Money back at closing for closing costs or a rate buydown</li>
+          <li>Keep the builder's incentives and get your rebate on top</li>
+          <li>This month's quick move-in homes, the ones with the biggest deals, sent by text</li>
         </ul>
-        <div class="warn"><strong>Visiting the model soon?</strong> Register us before your first visit. Most builders will not pay a rebate if your agent was not registered at your first visit.</div>
       </div>
       <div class="form-card">
-        <h2>Get this month's homes + your rebate</h2>
-        <p class="note">Takes 20 seconds. We text you back in minutes.</p>
+        <div class="card-warn">&#9888; <strong>Visiting the model soon?</strong> Register with us first.<span class="cw-more"> Most builders won't pay a rebate if your agent wasn't registered at your first visit.</span></div>
+        <h2>See your rebate + this month's deals</h2>
         <div class="lead-card">
             <form class="lead-form" data-form-name="lp_madera_queen_creek" data-lang="en" novalidate>
               <div class="lead-row">
@@ -134,23 +142,13 @@
               <input type="hidden" name="city" value="Queen Creek">
               <div class="lead-hp" aria-hidden="true"><label for="lp-website">Website</label><input id="lp-website" type="text" name="website" tabindex="-1" autocomplete="off"></div>
               <label class="lead-consent"><input type="checkbox" name="consent" value="yes"><span class="lead-consent-text">By checking this box, I agree to receive calls and text messages from RebateAZ at the number provided, including messages sent using automated technology, about my home search. Consent is not a condition of purchase. Msg &amp; data rates may apply. Msg frequency varies. Reply STOP to opt out, HELP for help. See our <a href="/privacy.html">Privacy Policy</a> and <a href="/terms.html">Terms</a>.</span></label>
-              <button type="submit">Send Me Homes + My Rebate</button>
+              <button type="submit">Get My Rebate</button>
               <div class="lead-error" role="alert" hidden></div>
             </form>
           </div>
+        <p class="assure">No cost to buyers &middot; We text you back in minutes</p>
         <p class="alt">Rather text? <a href="sms:+16029752727?&amp;body=Hi%2C%20I%27m%20interested%20in%20Madera.%20Can%20you%20send%20me%20this%20month%27s%20homes%3F">Text (602) 975-2727</a> or <a href="tel:+16029752727">call</a></p>
         <div class="trust"><img src="/homesmart-logo.png" alt="HomeSmart" height="26"><span>Powered by HomeSmart<br>Licensed Arizona real estate agents</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="block">
-    <div class="wrap">
-      <h2 class="sec">How it works</h2>
-      <div class="steps">
-        <div class="step"><b>Register us first</b>Send your info or text us before you visit the model. We register as your agent.</div>
-        <div class="step"><b>Get the best homes</b>We send this month's quick move-ins and incentives, the homes with the biggest deals.</div>
-        <div class="step"><b>Get money back</b>At closing, up to 2% of the price comes back to you as a credit.</div>
       </div>
     </div>
   </section>
@@ -166,13 +164,36 @@
           <tr><td>$750,000</td><td class="b">up to $15,000</td></tr>
         </tbody>
       </table>
-      <p style="font-size:0.85rem;color:#6b7280">Examples at 2%. Your rebate depends on the builder's agent commission and your lender's limits, and is shown on your closing statement.</p>
+      <p style="font-size:0.85rem;color:#6b7280">Examples at 2%. Actual rebate varies by builder commission and lender rules.</p>
     </div>
   </section>
 
   <section class="block">
     <div class="wrap">
-      <h2 class="sec">What buyers say</h2>
+      <h2 class="sec">Why buy with RebateAZ</h2>
+      <div class="why">
+        <div><b>Your own agent</b>The builder's sales rep works for the builder. We work for you, from comparing homes to the final walkthrough.</div>
+        <div><b>Money back at closing</b>The builder already pays a buyer's agent commission. We give up to 2% of the price back to you as a credit.</div>
+        <div><b>Keep the builder's incentives</b>Your rebate is separate from builder incentives, so you can use both for closing costs or a lower rate.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt-bg">
+    <div class="wrap">
+      <h2 class="sec">How it works</h2>
+      <div class="steps">
+        <div class="step"><b>Register before you visit</b>Send your info or text us before your first visit to the model.</div>
+        <div class="step"><b>We represent you</b>We register as your agent and send this month's quick move-ins and incentives.</div>
+        <div class="step"><b>Buy your home</b>We help you compare, negotiate incentives and get to closing.</div>
+        <div class="step"><b>Get your rebate</b>Your rebate is credited to you at closing.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <h2 class="sec">What RebateAZ buyers say</h2>
       <div class="reviews">
         <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&ldquo;The commission rebate got me into my townhome at a lower monthly payment than the lease I was thinking of signing.&rdquo;</p><small>Sian C., Mesa, via Google</small></div>
         <div class="review"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&ldquo;Best decision we ever made. The agent made the entire process a breeze. Full service with money back at closing!&rdquo;</p><small>Ted A., Surprise, via Google</small></div>
@@ -202,10 +223,11 @@
       <h2 class="sec">Questions</h2>
       <details><summary>Does it cost me anything?</summary><p>No. The builder pays the agent commission, and part of it comes back to you at closing. You do not pay us.</p></details>
       <details><summary>Will I still get the builder's incentives?</summary><p>Yes. Builder incentives are separate. Your rebate comes from the agent commission, so you can stack both.</p></details>
+      <details><summary>When do I get the money?</summary><p>At closing. Your rebate is applied as a credit on your closing statement, usually toward closing costs or a rate buydown, as your lender allows.</p></details>
       <details><summary>Is a buyer rebate legal in Arizona?</summary><p>Yes. Commission rebates are legal in Arizona when they are disclosed and approved by your lender, and they appear on your closing statement.</p></details>
       <details><summary>I already visited the model. Can I still get a rebate?</summary><p>Maybe not with that builder, since most require your agent at the first visit. Text us anyway: other communities and builders are still open to you.</p></details>
       <div class="cta2" style="margin-top:1.4rem">
-        <a href="#top">Get this month's homes</a>
+        <a href="#top">Get my rebate</a>
         <a class="ghost" href="sms:+16029752727?&amp;body=Hi%2C%20I%27m%20interested%20in%20Madera.%20Can%20you%20send%20me%20this%20month%27s%20homes%3F">Text (602) 975-2727</a>
       </div>
     </div>
