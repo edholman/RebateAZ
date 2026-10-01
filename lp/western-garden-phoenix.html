@@ -59,6 +59,8 @@
     h2.sec { font-size: 1.5rem; margin: 0 0 1rem; color: var(--navy); letter-spacing: -0.01em; }
     .hook { font-size: 1.02rem; color: rgba(255,255,255,0.95); margin: 0 0 0.8rem; }
     .card-warn { background: #fff7e0; border: 1px solid #f2d27a; border-radius: 10px; padding: 0.55rem 0.7rem; font-size: 0.85rem; color: #6b4e00; margin-bottom: 0.8rem; line-height: 1.4; }
+    .form-card .lead-form .lead-consent { font-size: 0.74rem; line-height: 1.35; margin: 0.8rem 0 0.2rem; }
+    .form-card .lead-form .lead-consent input { width: 20px; height: 20px; flex: 0 0 20px; margin-top: 0.05rem; }
     .assure { text-align: center; font-size: 0.82rem; color: var(--gray); margin: 0.6rem 0 0; }
     .why { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
     .why > div { background: var(--light); border-radius: 12px; padding: 1rem 1.1rem; }
@@ -141,7 +143,7 @@
               <input type="hidden" name="message" value="Interested in Western Garden (ad landing page)">
               <input type="hidden" name="city" value="Phoenix">
               <div class="lead-hp" aria-hidden="true"><label for="lp-website">Website</label><input id="lp-website" type="text" name="website" tabindex="-1" autocomplete="off"></div>
-              <label class="lead-consent"><input type="checkbox" name="consent" value="yes"><span class="lead-consent-text">By checking this box, I agree to receive calls and text messages from RebateAZ at the number provided, including messages sent using automated technology, about my home search. Consent is not a condition of purchase. Msg &amp; data rates may apply. Msg frequency varies. Reply STOP to opt out, HELP for help. See our <a href="/privacy.html">Privacy Policy</a> and <a href="/terms.html">Terms</a>.</span></label>
+              <label class="lead-consent"><input type="checkbox" name="consent" value="yes"><span class="lead-consent-text">Yes, RebateAZ can call and text me about my home search, including automated texts. Not required to buy. Msg &amp; data rates may apply. Reply STOP to opt out. <a href="/privacy.html">Privacy</a> &middot; <a href="/terms.html">Terms</a></span></label>
               <button type="submit">Get My Rebate</button>
               <div class="lead-error" role="alert" hidden></div>
             </form>
