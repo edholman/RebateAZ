@@ -83,9 +83,18 @@
     @media (max-width: 820px) {
       .steps, .reviews { grid-template-columns: 1fr; }
       .hero .grid { grid-template-columns: 1fr; grid-template-areas: 'head' 'form' 'rest'; }
-      h1 { font-size: 1.6rem; }
-      .hero { padding: 18px 0 26px; }
-      .sub { font-size: 1rem; }
+      h1 { font-size: 1.42rem; margin-bottom: 0.4rem; }
+      .hero { padding: 14px 0 24px; }
+      .hero .grid { row-gap: 12px; }
+      .eyebrow { font-size: 0.74rem; margin-bottom: 0.4rem; }
+      .sub { font-size: 0.95rem; margin-bottom: 0; }
+      .form-card { padding: 0.9rem 0.9rem 0.8rem; }
+      .form-card h2 { font-size: 1.05rem; }
+      .form-card .note { display: none; }
+      .form-card .lead-form .lead-row { grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+      .form-card .lead-form label { margin-top: 0.55rem; font-size: 0.85rem; }
+      .form-card .lead-form .lead-consent { font-size: 0.7rem; margin-top: 0.7rem; }
+      .form-card .lead-form button[type="submit"] { margin-top: 0.7rem; }
     }
   </style>
 </head>
@@ -102,7 +111,7 @@
       <div class="h-head">
         <span class="eyebrow">Western Garden &middot; Phoenix, AZ</span>
         <h1>Buying a new home in Western Garden? Get up to <span class="money">$9,000 back</span> at closing.</h1>
-        <p class="sub">Up to 2% of the price back to you, about $9,000 on a $450,000 home in Phoenix, plus this month's quick move-in homes and builder incentives. Free.</p>
+        <p class="sub">Up to 2% back (about $9,000 on a $450,000 home), plus this month's quick move-ins and builder incentives. Free.</p>
       </div>
       <div class="h-rest">
         <ul class="bullets">
