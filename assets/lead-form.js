@@ -37,6 +37,22 @@
     try { var s = window.localStorage; s.setItem('__t', '1'); s.removeItem('__t'); return s; } catch (e) { return null; }
   }
 
+  // Untagged visits: work out source/medium from the referrer (google + organic, chatgpt.com + ai, ...).
+  function inferSource(data) {
+    if (data.utm_source) return { source: data.utm_source, medium: data.utm_medium || '(none)' };
+    if (data.gclid) return { source: 'google', medium: 'cpc' };
+    if (data.fbclid) return { source: 'facebook', medium: 'paid_social' };
+    var host = '';
+    try { host = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, '') : ''; } catch (e) { host = ''; }
+    if (!host || host === window.location.hostname.replace(/^www\./, '')) return { source: '(direct)', medium: '(none)' };
+    var engines = { google: /(^|\.)google\./, bing: /(^|\.)bing\.com$/, yahoo: /(^|\.)yahoo\./, duckduckgo: /duckduckgo\.com$/, ecosia: /ecosia\.org$/ };
+    for (var name in engines) { if (engines[name].test(host)) return { source: name, medium: 'organic' }; }
+    var ai = { chatgpt: /(chatgpt\.com|openai\.com)$/, perplexity: /perplexity\.ai$/, gemini: /gemini\.google\.com$/, copilot: /copilot\.microsoft\.com$/, claude: /claude\.ai$/ };
+    for (var a in ai) { if (ai[a].test(host)) return { source: a, medium: 'ai' }; }
+    if (/(facebook|fb|instagram|t\.co|twitter|x\.com|linkedin|reddit|nextdoor|youtube|tiktok)/.test(host)) return { source: host, medium: 'social' };
+    return { source: host, medium: 'referral' };
+  }
+
   function readAttribution() {
     var store = safeStorage(), saved = null;
     if (store) {
@@ -47,11 +63,14 @@
     ATTR_KEYS.forEach(function (k) { var v = params.get(k); if (v) { fresh[k] = v.slice(0, 200); hasFresh = true; } });
     // A new ad click or tagged link replaces older attribution; otherwise keep the first touch.
     if (hasFresh || !saved) {
-      saved = { ts: Date.now(), landing_page: window.location.href.slice(0, 500), data: fresh };
+      var inferred = inferSource(fresh);
+      saved = { ts: Date.now(), landing_page: window.location.href.slice(0, 500), data: fresh, source: inferred.source, medium: inferred.medium };
       if (store) { try { store.setItem(STORE_KEY, JSON.stringify(saved)); } catch (e) { /* ignore */ } }
     }
     var out = {};
     ATTR_KEYS.forEach(function (k) { if (saved.data && saved.data[k]) out[k] = saved.data[k]; });
+    // Organic/referral/direct leads arrive in the CRM labeled the same way as tagged ones (e.g. google / organic).
+    if (!out.utm_source && saved.source) { out.utm_source = saved.source; out.utm_medium = saved.medium; }
     // Fall back to the Google Ads click ID stored by gtag (_gcl_aw = GCL.<time>.<gclid>).
     if (!out.gclid) {
       var m = document.cookie.match(/(?:^|;\s*)_gcl_aw=([^;]+)/);
@@ -62,6 +81,29 @@
   }
 
   var attribution = readAttribution();
+  var landingPath = '';
+  try { landingPath = new URL(attribution.landing_page).pathname; } catch (e) { landingPath = ''; }
+  var trafficSource = (attribution.utm_source || '(direct)') + ' / ' + (attribution.utm_medium || '(none)');
+
+  // Tag every Clarity session so recordings, heatmaps and events can be filtered by source and landing page.
+  if (typeof window.clarity === 'function') {
+    window.clarity('set', 'traffic_source', trafficSource);
+    window.clarity('set', 'traffic_medium', attribution.utm_medium || '(none)');
+    if (landingPath) window.clarity('set', 'landing_page', landingPath);
+  }
+
+  // Site-wide tap-to-call / tap-to-text tracking (the /lp/ ad pages have their own handler).
+  if (window.location.pathname.indexOf('/lp/') !== 0) {
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="tel:"], a[href^="sms:"]');
+      if (!a) return;
+      var method = a.getAttribute('href').indexOf('sms:') === 0 ? 'text' : 'call';
+      var info = { method: method, page: window.location.pathname, source: trafficSource, landing_page: landingPath };
+      (window.dataLayer = window.dataLayer || []).push({ event: 'contact_click', method: method, page: info.page, traffic_source: trafficSource, landing_page: landingPath });
+      if (typeof window.gtag === 'function') { try { window.gtag('event', 'contact_click', info); } catch (err) { /* ignore */ } }
+      if (typeof window.clarity === 'function') window.clarity('event', method === 'text' ? 'text_tap' : 'call_tap');
+    });
+  }
 
   function fireConversion() {
     if (typeof window.gtag === 'function') {
@@ -118,6 +160,7 @@
         })
         .then(function (r) {
           if (r.status === 200 && r.body && r.body.ok) {
+            (window.dataLayer = window.dataLayer || []).push({ event: 'lead_submitted', form_name: payload.form_name, page: window.location.pathname, traffic_source: trafficSource, landing_page: landingPath });
             if (form.getAttribute('data-success') === 'inline' || lang === 'es') {
               fireConversion();
               var ok = form.parentNode.querySelector('.lead-success');
