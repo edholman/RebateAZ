@@ -307,4 +307,18 @@
     <priority>0.8</priority>
   </url>
 
+  <url>
+    <loc>https://rebateaz.com/blog/buyer-rebate-vs-flat-fee-agent-arizona.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://rebateaz.com/about.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
 </urlset>
