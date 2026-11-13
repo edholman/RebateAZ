@@ -45,10 +45,16 @@
         "addressCountry": "US"
       },
       "openingHours": "Mo-Su 08:00-20:00",
-      "areaServed": {
-        "@type": "State",
-        "name": "Arizona"
-      },
+      "areaServed": [
+    {"@type": "State", "name": "Arizona"},
+    {"@type": "City", "name": "Phoenix, AZ"},
+    {"@type": "City", "name": "Mesa, AZ"},
+    {"@type": "City", "name": "Chandler, AZ"},
+    {"@type": "City", "name": "Gilbert, AZ"},
+    {"@type": "City", "name": "Tempe, AZ"},
+    {"@type": "City", "name": "Scottsdale, AZ"},
+    {"@type": "City", "name": "Queen Creek, AZ"}
+  ],
       "sameAs": [
         "https://share.google/0ObLzykPZF6JxFpaH"
       ]
@@ -972,19 +978,7 @@
                   <div><label for="home-page-first">First name</label><input id="home-page-first" type="text" name="first_name" autocomplete="given-name"></div>
                   <div><label for="home-page-last">Last name</label><input id="home-page-last" type="text" name="last_name" autocomplete="family-name"></div>
                 </div>
-                <div class="lead-row">
-                  <div><label for="home-page-phone">Mobile phone</label><input id="home-page-phone" type="tel" name="phone" autocomplete="tel" inputmode="tel" required></div>
-                  <div><label for="home-page-email">Email</label><input id="home-page-email" type="email" name="email" autocomplete="email"></div>
-                </div>
-                <label for="home-page-when">When are you hoping to buy? <span class="opt">(optional)</span></label>
-                <select id="home-page-when" name="timeline">
-                      <option value="">Select one</option>
-                      <option>As soon as possible</option>
-                      <option>Within 3 months</option>
-                      <option>3 to 6 months</option>
-                      <option>6 months or more</option>
-                      <option>Just researching</option>
-                </select>
+                <label for="home-page-phone">Mobile phone</label><input id="home-page-phone" type="tel" name="phone" autocomplete="tel" inputmode="tel" required>
                 <label for="home-page-msg">Anything we should know? <span class="opt">(optional)</span></label>
                 <textarea id="home-page-msg" name="message" maxlength="1000"></textarea>
                 <div class="lead-hp" aria-hidden="true"><label for="home-page-website">Website</label><input id="home-page-website" type="text" name="website" tabindex="-1" autocomplete="off"></div>
@@ -1217,6 +1211,7 @@
                 <a href="privacy.html">Privacy Policy</a>
                 <a href="terms.html">Terms & Conditions</a>
                 <a href="about.html">About</a>
+                <a href="blog/buyer-rebate-questions.html">Rebate Questions</a>
                 <a href="sell-scottsdale-home-1-percent.html">Sell for 1% in Scottsdale</a>
             </div>
             <div class="footer-links" style="margin-top: -10px; font-size: 0.9rem;">

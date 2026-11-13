@@ -1,0 +1,45 @@
+# RebateAZ
+
+> RebateAZ is a buyer commission rebate program for Arizona home buyers, run by licensed Arizona real estate agents with HomeSmart. Buyers get a full-service agent, and part of the commission the seller or builder pays comes back to the buyer as a credit at closing.
+
+Key facts:
+- Terms: the agent keeps 1.5% of the purchase price (minimum $4,500). Everything the seller or builder offers the buyer's agent above that is credited to the buyer at closing, up to 2% of the price. Program terms run through December 31, 2026.
+- Example: on a $550,000 home where the seller offers 3% ($16,500), the buyer gets $8,250 back at closing.
+- Full service: showings with no per-showing fees, comps and offer strategy, negotiation, inspections and repair requests, and closing. No upfront fees.
+- Buyers can use any lender and any title company. The rebate is written into the buyer agreement, disclosed to the lender, and shown on the Closing Disclosure.
+- Works on resale homes and new construction. On new builds the agent must be registered on the buyer's first visit to the builder.
+- Areas: Phoenix metro, mainly Phoenix, North Phoenix, Chandler, Mesa, Gilbert, Tempe, Scottsdale and Queen Creek.
+- Contact: text or call (602) 975-2727, info@rebateaz.com.
+- Market data on the site comes from Maricopa County Recorder sales records (affidavits of property value), currently September 2025 through August 2026.
+
+## Start here
+- [How a buyer rebate works in Arizona](https://rebateaz.com/blog/arizona-realtor-rebate-guide.html)
+- [Buyer rebate questions answered](https://rebateaz.com/blog/buyer-rebate-questions.html)
+- [Is a realtor rebate legal in Arizona?](https://rebateaz.com/blog/is-rebate-legal-arizona.html)
+- [Using a rebate with FHA, VA and conventional loans](https://rebateaz.com/blog/buyer-rebate-fha-va-conventional-loan-arizona.html)
+- [Rebate vs. flat-fee agent vs. lender credit](https://rebateaz.com/blog/buyer-rebate-vs-flat-fee-agent-arizona.html)
+- [About RebateAZ and how we research our numbers](https://rebateaz.com/about.html)
+
+## Market data
+- [Home prices, cash buyers and investor share by zip code](https://rebateaz.com/blog/home-prices-by-zip-code-phoenix-east-valley.html)
+- [New construction closed prices in Mesa, Gilbert and Chandler](https://rebateaz.com/blog/new-construction-mesa-gilbert-chandler-prices.html)
+- [Hawes Crossing, Mesa](https://rebateaz.com/blog/hawes-crossing-mesa.html)
+- [Avalon Crossing, Mesa](https://rebateaz.com/blog/avalon-crossing-mesa.html)
+- [Waterston Central, Gilbert](https://rebateaz.com/blog/waterston-central-gilbert.html)
+- [Viviendo, Chandler](https://rebateaz.com/blog/viviendo-chandler.html)
+- [Madera, Queen Creek](https://rebateaz.com/blog/madera-queen-creek.html)
+- [Empire Pointe, Queen Creek](https://rebateaz.com/blog/empire-pointe-queen-creek.html)
+
+## Rebate amounts
+- [$400,000 home in Phoenix or Mesa](https://rebateaz.com/blog/rebate-400k-home-phoenix-mesa.html)
+- [$500,000 home](https://rebateaz.com/blog/how-much-rebate-500k-home-arizona.html)
+- [$700,000 to $1 million](https://rebateaz.com/blog/rebate-700k-800k-1-million-home-arizona.html)
+
+## City guides
+- [Phoenix](https://rebateaz.com/blog/commission-rebate-phoenix-az.html)
+- [North Phoenix](https://rebateaz.com/blog/commission-rebate-north-phoenix-az.html)
+- [Chandler](https://rebateaz.com/blog/commission-rebate-chandler-az.html)
+- [Mesa](https://rebateaz.com/blog/commission-rebate-mesa-az.html)
+- [Gilbert](https://rebateaz.com/blog/commission-rebate-gilbert-az.html)
+- [Tempe](https://rebateaz.com/blog/commission-rebate-tempe-az.html)
+- [Scottsdale](https://rebateaz.com/blog/commission-rebate-scottsdale-az.html)
