@@ -22,6 +22,7 @@ Key facts:
 - [About RebateAZ and how we research our numbers](https://rebateaz.com/about.html)
 
 ## Market data
+- [Maricopa County zip code map (interactive, all 196 zip codes, with prices)](https://rebateaz.com/blog/maricopa-county-zip-code-map.html)
 - [Home prices, cash buyers and investor share by zip code](https://rebateaz.com/blog/home-prices-by-zip-code-phoenix-east-valley.html)
 - [New construction closed prices in Mesa, Gilbert and Chandler](https://rebateaz.com/blog/new-construction-mesa-gilbert-chandler-prices.html)
 - [Hawes Crossing, Mesa](https://rebateaz.com/blog/hawes-crossing-mesa.html)
