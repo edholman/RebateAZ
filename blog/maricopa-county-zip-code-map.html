@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png?v=2">
+  <link rel="icon" href="/favicon.ico?v=2" sizes="48x48">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maricopa County Zip Code Map (Interactive) | RebateAZ</title>
+  <meta name="description" content="Interactive map of all 196 Maricopa County zip codes with outlines, from the county&#x27;s USPS zip code file. Search any zip or city and see home prices by zip." />
+  <link rel="canonical" href="https://rebateaz.com/blog/maricopa-county-zip-code-map.html">
+  <link rel="alternate" hreflang="en" href="https://rebateaz.com/blog/maricopa-county-zip-code-map.html">
+  <link rel="alternate" hreflang="x-default" href="https://rebateaz.com/blog/maricopa-county-zip-code-map.html">
+
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+
+  <style>
+    .blog-post h2[id] { scroll-margin-top: 90px; }
+    .zm-tools { display:flex; gap:.5rem; flex-wrap:wrap; margin:1rem 0 .6rem; }
+    .zm-tools input { flex:1 1 220px; padding:.7rem .85rem; border:1px solid #cbd5e1; border-radius:8px; font-size:1rem; }
+    .zm-tools button { padding:.7rem 1rem; border:0; border-radius:8px; background:#002868; color:#fff; font-weight:600; cursor:pointer; font-size:.95rem; }
+    .zm-tools button.alt { background:#e8eef9; color:#002868; }
+    .zm-msg { font-size:.9rem; color:#6c757d; min-height:1.2em; margin-bottom:.4rem; }
+    #map { height:72vh; min-height:420px; max-height:760px; border-radius:12px; border:1px solid #e5e7eb; z-index:0; }
+    .zip-lbl { background:transparent; border:0; box-shadow:none; font-weight:700; color:#002868; font-size:12px; text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 3px #fff; }
+    .zip-lbl::before { display:none; }
+    .zp h4 { margin:0 0 .3rem; color:#002868; font-size:1.05rem; }
+    .zp table { border-collapse:collapse; font-size:.9rem; }
+    .zp td { padding:.12rem .6rem .12rem 0; }
+    .zp .note { font-size:.82rem; color:#6c757d; margin:.4rem 0 0; }
+    .zp a { font-weight:600; }
+    .legend { font-size:.85rem; color:#6c757d; margin:.4rem 0 1.4rem; }
+    .city-row { padding:.55rem 0; border-bottom:1px solid #eef0f3; }
+    .city-row .cnt { color:#6c757d; font-size:.9rem; }
+    .city-row div { margin-top:.2rem; line-height:1.9; }
+    .zl { font-variant-numeric:tabular-nums; }
+  </style>
+
+  <meta property="og:title" content="Maricopa County Zip Code Map (Interactive, 2026)">
+  <meta property="og:description" content="Interactive map of all 196 Maricopa County zip codes with outlines, from the county&#x27;s USPS zip code file. Search any zip or city and see home prices by zip.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://rebateaz.com/blog/maricopa-county-zip-code-map.html">
+  <meta property="og:image" content="https://rebateaz.com/rebateazlogo.jpg">
+  <meta property="og:site_name" content="RebateAZ">
+  <meta property="article:published_time" content="2026-11-15T00:00:00Z">
+  <meta property="article:modified_time" content="2026-11-15T00:00:00Z">
+  <meta property="article:author" content="https://rebateaz.com/">
+  <meta property="article:section" content="Real Estate">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How many zip codes are in Maricopa County?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Maricopa County USPS zip code file has 196 zip codes with mapped boundaries. Phoenix alone has 70 of them. Post office box and single-building zip codes have no area of their own, so they don't appear on a boundary map."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What zip codes are in Phoenix?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Phoenix zip codes on the county map: 85001, 85002, 85003, 85004, 85005, 85006, 85007, 85008, 85009, 85010, 85011, 85012, 85013, 85014, 85015, 85016, 85017, 85018, 85019, 85020, 85021, 85022, 85023, 85024, 85026, 85027, 85028, 85029, 85030, 85031, 85032, 85033, 85034, 85035, 85036, 85037, 85038, 85040, 85041, 85042, 85043, 85044, 85045, 85046, 85048, 85050, 85051, 85053, 85054, 85060, 85061, 85062, 85063, 85064, 85066, 85067, 85068, 85069, 85070, 85071, 85072, 85074, 85076, 85078, 85079, 85080, 85082, 85083, 85085, 85086. Some of these also cover parts of neighboring towns."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do zip codes follow city limits?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Zip codes are mail delivery routes set by the Postal Service, not city boundaries. A home can have a Phoenix mailing address and sit in another city, or the reverse. Check the county assessor or the city's own map when city limits matter, for example for taxes, schools or permits."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where does this map's data come from?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The outlines come from Maricopa County's USPS zip code boundary file, published by Maricopa County GIS. Home prices come from Maricopa County Recorder sales records (affidavits of property value) from September 2025 through August 2026. Outlines are simplified slightly so the map loads fast on a phone."
+      }
+    }
+  ]
+}
+  </script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P53NZTKK');</script>
+  <!-- End Google Tag Manager -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Maricopa County Zip Code Map (Interactive, 2026)",
+  "description": "Interactive map of all 196 Maricopa County zip codes with outlines, from the county's USPS zip code file. Search any zip or city and see home prices by zip.",
+  "datePublished": "2026-11-15",
+  "dateModified": "2026-11-15",
+  "image": "https://rebateaz.com/rebateazlogo.jpg",
+  "mainEntityOfPage": "https://rebateaz.com/blog/maricopa-county-zip-code-map.html",
+  "author": {
+    "@type": "Organization",
+    "name": "RebateAZ",
+    "url": "https://rebateaz.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "RebateAZ",
+    "url": "https://rebateaz.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://rebateaz.com/favicon-192.png"
+    }
+  },
+  "url": "https://rebateaz.com/blog/maricopa-county-zip-code-map.html"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://rebateaz.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://rebateaz.com/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Maricopa County Zip Code Map",
+      "item": "https://rebateaz.com/blog/maricopa-county-zip-code-map.html"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "Maricopa County zip code boundaries with home prices",
+  "description": "Interactive map of all 196 Maricopa County zip codes with outlines, from the county's USPS zip code file. Search any zip or city and see home prices by zip.",
+  "url": "https://rebateaz.com/blog/maricopa-county-zip-code-map.html",
+  "spatialCoverage": "Maricopa County, Arizona",
+  "creator": {
+    "@type": "Organization",
+    "name": "RebateAZ"
+  },
+  "isBasedOn": "Maricopa County GIS, USPS zip code boundaries",
+  "distribution": {
+    "@type": "DataDownload",
+    "encodingFormat": "application/geo+json",
+    "contentUrl": "https://rebateaz.com/assets/maricopa-zip-codes.json"
+  }
+}
+  </script>
+  <!-- Google tag (gtag.js) for Google Ads: saves ad click IDs so conversions are attributed -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-697276669"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-697276669');
+  </script>
+  <link rel="stylesheet" href="/assets/lead-form.css">
+
+  <!-- Microsoft Clarity (heatmaps + session recordings; masking: balanced) -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "yr6i6vqnz0");
+  </script>
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P53NZTKK"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+<header>
+  <div class="container">
+    <nav>
+      <a href="/" class="logo-container">
+        <img src="/homesmart-logo.png" alt="Home Smart Logo" class="logo-img">
+        <div class="logo-text">Rebate<span>AZ</span></div>
+      </a>
+      <a href="/#contact" class="cta-button">Get Rebate</a>
+    </nav>
+  </div>
+</header>
+
+<section class="blog-post">
+  <div class="container post-wrap">
+
+    <a class="breadcrumbs" href="/blog/">Back to Blog</a>
+
+    <h1>Maricopa County Zip Code Map (Interactive, 2026)</h1>
+    <div class="post-meta">Updated November 2026 &bull; Boundaries from Maricopa County GIS</div>
+
+    <p>
+      Every zip code in Maricopa County, outlined on one map: 196 zip codes from the county's own USPS zip code boundary file.
+      Search a zip code or city, tap <strong>Find my zip</strong>, or tap any area to see its zip code, city and, for most of Phoenix and the East Valley, the median home price and how buyers paid.
+    </p>
+
+    <div class="zm-tools" id="map-tools">
+      <input id="zm-q" type="search" placeholder="Zip code or city, e.g. 85295 or Gilbert" aria-label="Search zip code or city" autocomplete="off">
+      <button id="zm-go" type="button">Search</button>
+      <button id="zm-me" type="button" class="alt">Find my zip</button>
+    </div>
+    <div class="zm-msg" id="zm-msg" role="status"></div>
+    <div id="map" aria-label="Map of Maricopa County zip codes"></div>
+    <p class="legend">Shaded zip codes have price data (at least 60 sales in the last year). Zoom in to see zip numbers on the map. Zip codes are mail routes, not city limits.</p>
+
+<div class="text-cta">
+      <p>Text us the address of any home and we'll tell you your rebate in dollars.<span class="text-cta-trust">Licensed Arizona agents with HomeSmart. <a href="https://share.google/0ObLzykPZF6JxFpaH" rel="noopener" target="_blank">Read our Google reviews</a>.</span></p>
+      <a class="text-cta-btn" data-cta="zip_map" href="sms:+16029752727?&body=Hi%2C%20what%27s%20my%20rebate%20on%20this%20home%3A%20___%3F%20My%20name%20is%20">Text (602) 975-2727</a>
+    </div>
+
+    <h2 id="by-city">Maricopa County Zip Codes by City</h2>
+    <p>Tap a zip code to jump to it on the map. Cities are the Postal Service city name for each zip; a zip that serves two place names is listed under both.</p>
+    <div class="city-list">
+      <div class="city-row"><strong>Phoenix</strong> <span class="cnt">(70)</span><div><a href="#map" class="zl" data-z="85001">85001</a>, <a href="#map" class="zl" data-z="85002">85002</a>, <a href="#map" class="zl" data-z="85003">85003</a>, <a href="#map" class="zl" data-z="85004">85004</a>, <a href="#map" class="zl" data-z="85005">85005</a>, <a href="#map" class="zl" data-z="85006">85006</a>, <a href="#map" class="zl" data-z="85007">85007</a>, <a href="#map" class="zl" data-z="85008">85008</a>, <a href="#map" class="zl" data-z="85009">85009</a>, <a href="#map" class="zl" data-z="85010">85010</a>, <a href="#map" class="zl" data-z="85011">85011</a>, <a href="#map" class="zl" data-z="85012">85012</a>, <a href="#map" class="zl" data-z="85013">85013</a>, <a href="#map" class="zl" data-z="85014">85014</a>, <a href="#map" class="zl" data-z="85015">85015</a>, <a href="#map" class="zl" data-z="85016">85016</a>, <a href="#map" class="zl" data-z="85017">85017</a>, <a href="#map" class="zl" data-z="85018">85018</a>, <a href="#map" class="zl" data-z="85019">85019</a>, <a href="#map" class="zl" data-z="85020">85020</a>, <a href="#map" class="zl" data-z="85021">85021</a>, <a href="#map" class="zl" data-z="85022">85022</a>, <a href="#map" class="zl" data-z="85023">85023</a>, <a href="#map" class="zl" data-z="85024">85024</a>, <a href="#map" class="zl" data-z="85026">85026</a>, <a href="#map" class="zl" data-z="85027">85027</a>, <a href="#map" class="zl" data-z="85028">85028</a>, <a href="#map" class="zl" data-z="85029">85029</a>, <a href="#map" class="zl" data-z="85030">85030</a>, <a href="#map" class="zl" data-z="85031">85031</a>, <a href="#map" class="zl" data-z="85032">85032</a>, <a href="#map" class="zl" data-z="85033">85033</a>, <a href="#map" class="zl" data-z="85034">85034</a>, <a href="#map" class="zl" data-z="85035">85035</a>, <a href="#map" class="zl" data-z="85036">85036</a>, <a href="#map" class="zl" data-z="85037">85037</a>, <a href="#map" class="zl" data-z="85038">85038</a>, <a href="#map" class="zl" data-z="85040">85040</a>, <a href="#map" class="zl" data-z="85041">85041</a>, <a href="#map" class="zl" data-z="85042">85042</a>, <a href="#map" class="zl" data-z="85043">85043</a>, <a href="#map" class="zl" data-z="85044">85044</a>, <a href="#map" class="zl" data-z="85045">85045</a>, <a href="#map" class="zl" data-z="85046">85046</a>, <a href="#map" class="zl" data-z="85048">85048</a>, <a href="#map" class="zl" data-z="85050">85050</a>, <a href="#map" class="zl" data-z="85051">85051</a>, <a href="#map" class="zl" data-z="85053">85053</a>, <a href="#map" class="zl" data-z="85054">85054</a>, <a href="#map" class="zl" data-z="85060">85060</a>, <a href="#map" class="zl" data-z="85061">85061</a>, <a href="#map" class="zl" data-z="85062">85062</a>, <a href="#map" class="zl" data-z="85063">85063</a>, <a href="#map" class="zl" data-z="85064">85064</a>, <a href="#map" class="zl" data-z="85066">85066</a>, <a href="#map" class="zl" data-z="85067">85067</a>, <a href="#map" class="zl" data-z="85068">85068</a>, <a href="#map" class="zl" data-z="85069">85069</a>, <a href="#map" class="zl" data-z="85070">85070</a>, <a href="#map" class="zl" data-z="85071">85071</a>, <a href="#map" class="zl" data-z="85072">85072</a>, <a href="#map" class="zl" data-z="85074">85074</a>, <a href="#map" class="zl" data-z="85076">85076</a>, <a href="#map" class="zl" data-z="85078">85078</a>, <a href="#map" class="zl" data-z="85079">85079</a>, <a href="#map" class="zl" data-z="85080">85080</a>, <a href="#map" class="zl" data-z="85082">85082</a>, <a href="#map" class="zl" data-z="85083">85083</a>, <a href="#map" class="zl" data-z="85085">85085</a>, <a href="#map" class="zl" data-z="85086">85086</a></div></div>
+      <div class="city-row"><strong>Mesa</strong> <span class="cnt">(19)</span><div><a href="#map" class="zl" data-z="85201">85201</a>, <a href="#map" class="zl" data-z="85202">85202</a>, <a href="#map" class="zl" data-z="85203">85203</a>, <a href="#map" class="zl" data-z="85204">85204</a>, <a href="#map" class="zl" data-z="85205">85205</a>, <a href="#map" class="zl" data-z="85206">85206</a>, <a href="#map" class="zl" data-z="85207">85207</a>, <a href="#map" class="zl" data-z="85208">85208</a>, <a href="#map" class="zl" data-z="85209">85209</a>, <a href="#map" class="zl" data-z="85210">85210</a>, <a href="#map" class="zl" data-z="85211">85211</a>, <a href="#map" class="zl" data-z="85212">85212</a>, <a href="#map" class="zl" data-z="85213">85213</a>, <a href="#map" class="zl" data-z="85214">85214</a>, <a href="#map" class="zl" data-z="85215">85215</a>, <a href="#map" class="zl" data-z="85216">85216</a>, <a href="#map" class="zl" data-z="85274">85274</a>, <a href="#map" class="zl" data-z="85275">85275</a>, <a href="#map" class="zl" data-z="85277">85277</a></div></div>
+      <div class="city-row"><strong>Scottsdale</strong> <span class="cnt">(15)</span><div><a href="#map" class="zl" data-z="85250">85250</a>, <a href="#map" class="zl" data-z="85251">85251</a>, <a href="#map" class="zl" data-z="85252">85252</a>, <a href="#map" class="zl" data-z="85254">85254</a>, <a href="#map" class="zl" data-z="85255">85255</a>, <a href="#map" class="zl" data-z="85256">85256</a>, <a href="#map" class="zl" data-z="85257">85257</a>, <a href="#map" class="zl" data-z="85258">85258</a>, <a href="#map" class="zl" data-z="85259">85259</a>, <a href="#map" class="zl" data-z="85260">85260</a>, <a href="#map" class="zl" data-z="85261">85261</a>, <a href="#map" class="zl" data-z="85262">85262</a>, <a href="#map" class="zl" data-z="85266">85266</a>, <a href="#map" class="zl" data-z="85267">85267</a>, <a href="#map" class="zl" data-z="85271">85271</a></div></div>
+      <div class="city-row"><strong>Glendale</strong> <span class="cnt">(12)</span><div><a href="#map" class="zl" data-z="85301">85301</a>, <a href="#map" class="zl" data-z="85302">85302</a>, <a href="#map" class="zl" data-z="85303">85303</a>, <a href="#map" class="zl" data-z="85304">85304</a>, <a href="#map" class="zl" data-z="85305">85305</a>, <a href="#map" class="zl" data-z="85306">85306</a>, <a href="#map" class="zl" data-z="85307">85307</a>, <a href="#map" class="zl" data-z="85308">85308</a>, <a href="#map" class="zl" data-z="85310">85310</a>, <a href="#map" class="zl" data-z="85311">85311</a>, <a href="#map" class="zl" data-z="85312">85312</a>, <a href="#map" class="zl" data-z="85318">85318</a></div></div>
+      <div class="city-row"><strong>Chandler</strong> <span class="cnt">(8)</span><div><a href="#map" class="zl" data-z="85224">85224</a>, <a href="#map" class="zl" data-z="85225">85225</a>, <a href="#map" class="zl" data-z="85226">85226</a>, <a href="#map" class="zl" data-z="85244">85244</a>, <a href="#map" class="zl" data-z="85246">85246</a>, <a href="#map" class="zl" data-z="85248">85248</a>, <a href="#map" class="zl" data-z="85249">85249</a>, <a href="#map" class="zl" data-z="85286">85286</a></div></div>
+      <div class="city-row"><strong>Tempe</strong> <span class="cnt">(8)</span><div><a href="#map" class="zl" data-z="85280">85280</a>, <a href="#map" class="zl" data-z="85281">85281</a>, <a href="#map" class="zl" data-z="85282">85282</a>, <a href="#map" class="zl" data-z="85283">85283</a>, <a href="#map" class="zl" data-z="85284">85284</a>, <a href="#map" class="zl" data-z="85285">85285</a>, <a href="#map" class="zl" data-z="85287">85287</a>, <a href="#map" class="zl" data-z="85288">85288</a></div></div>
+      <div class="city-row"><strong>Gilbert</strong> <span class="cnt">(7)</span><div><a href="#map" class="zl" data-z="85233">85233</a>, <a href="#map" class="zl" data-z="85234">85234</a>, <a href="#map" class="zl" data-z="85295">85295</a>, <a href="#map" class="zl" data-z="85296">85296</a>, <a href="#map" class="zl" data-z="85297">85297</a>, <a href="#map" class="zl" data-z="85298">85298</a>, <a href="#map" class="zl" data-z="85299">85299</a></div></div>
+      <div class="city-row"><strong>Peoria</strong> <span class="cnt">(7)</span><div><a href="#map" class="zl" data-z="85345">85345</a>, <a href="#map" class="zl" data-z="85373">85373</a>, <a href="#map" class="zl" data-z="85380">85380</a>, <a href="#map" class="zl" data-z="85381">85381</a>, <a href="#map" class="zl" data-z="85382">85382</a>, <a href="#map" class="zl" data-z="85383">85383</a>, <a href="#map" class="zl" data-z="85385">85385</a></div></div>
+      <div class="city-row"><strong>Surprise</strong> <span class="cnt">(5)</span><div><a href="#map" class="zl" data-z="85374">85374</a>, <a href="#map" class="zl" data-z="85378">85378</a>, <a href="#map" class="zl" data-z="85379">85379</a>, <a href="#map" class="zl" data-z="85387">85387</a>, <a href="#map" class="zl" data-z="85388">85388</a></div></div>
+      <div class="city-row"><strong>Avondale</strong> <span class="cnt">(3)</span><div><a href="#map" class="zl" data-z="85323">85323</a>, <a href="#map" class="zl" data-z="85329">85329</a>, <a href="#map" class="zl" data-z="85392">85392</a></div></div>
+      <div class="city-row"><strong>Sun City</strong> <span class="cnt">(3)</span><div><a href="#map" class="zl" data-z="85351">85351</a>, <a href="#map" class="zl" data-z="85372">85372</a>, <a href="#map" class="zl" data-z="85373">85373</a></div></div>
+      <div class="city-row"><strong>Apache Junction</strong> <span class="cnt">(2)</span><div><a href="#map" class="zl" data-z="85119">85119</a>, <a href="#map" class="zl" data-z="85120">85120</a></div></div>
+      <div class="city-row"><strong>Buckeye</strong> <span class="cnt">(2)</span><div><a href="#map" class="zl" data-z="85326">85326</a>, <a href="#map" class="zl" data-z="85396">85396</a></div></div>
+      <div class="city-row"><strong>Cave Creek</strong> <span class="cnt">(2)</span><div><a href="#map" class="zl" data-z="85327">85327</a>, <a href="#map" class="zl" data-z="85331">85331</a></div></div>
+      <div class="city-row"><strong>Fountain Hills</strong> <span class="cnt">(2)</span><div><a href="#map" class="zl" data-z="85268">85268</a>, <a href="#map" class="zl" data-z="85269">85269</a></div></div>
+      <div class="city-row"><strong>Goodyear</strong> <span class="cnt">(2)</span><div><a href="#map" class="zl" data-z="85338">85338</a>, <a href="#map" class="zl" data-z="85395">85395</a></div></div>
+      <div class="city-row"><strong>Sun City West</strong> <span class="cnt">(2)</span><div><a href="#map" class="zl" data-z="85375">85375</a>, <a href="#map" class="zl" data-z="85376">85376</a></div></div>
+      <div class="city-row"><strong>Wickenburg</strong> <span class="cnt">(2)</span><div><a href="#map" class="zl" data-z="85358">85358</a>, <a href="#map" class="zl" data-z="85390">85390</a></div></div>
+      <div class="city-row"><strong>Aguila</strong> <span class="cnt">(1)</span><div><a href="#map" class="zl" data-z="85320">85320</a></div></div>
+      <div class="city-row"><strong>Ajo</strong> <span class="cnt">(1)</span><div><a href="#map" class="zl" data-z="85321">85321</a></div></div>
+      <div class="city-row"><strong>Arlington</strong> <span class="cnt">(1)</span><div><a href="#map" class="zl" data-z="85322">85322</a></div></div>
+      <div class="city-row"><strong>Carefree</strong> <span class="cnt">(1)</span><div><a href="#map" class="zl" data-z="85377">85377</a></div></div>
+      <div class="city-row"><strong>Chandler Heights</strong> <span class="cnt">(1)</span><div><a href="#map" class="zl" data-z="85127">85127</a></div></div>
+      <div class="city-row"><strong>Dateland</strong> <span class="cnt">(1)</span><div><a href="#map" class="zl" data-z="85333">85333</a></div></div>
+      <div class="city-row"><strong>El Mirage</strong> <span class="cnt">(1)</span><div><a href="#map" class="zl" data-z="85335">85335</a></div></div>
+      <div class="city-row"><strong>Fort McDowell</strong> <span class="cnt">(1)</span><div><a href="#map" class="zl" data-z="85264">85264</a></div></div>
+      <div class="city-row"><strong>Gila Bend</strong> <span class="cnt">(1)</span><div><a href="#map" class="zl" data-z="85337">85337</a></div></div>
+      <div class="city-row"><strong>Guadalupe</strong> <span class="cnt">(1)</span><div><a href="#map" class="zl" data-z="85283">85283</a></div></div>
+      <div class="city-row"><strong>Higley</strong> <span class="cnt">(1)</span><div><a href="#map" class="zl" data-z="85236">85236</a></div></div>
+      <div class="city-row"><strong>Laveen</strong> <span class="cnt">(1)</span><div><a href="#map" class="zl" data-z="85339">85339</a></div></div>
+      <div class="city-row"><strong>Litchfield Park</strong> <span class="cnt">(1)</span><div><a href="#map" class="zl" data-z="85340">85340</a></div></div>
+      <div class="city-row"><strong>Luke Air Force Base</strong> <span class="cnt">(1)</span><div><a href="#map" class="zl" data-z="85309">85309</a></div></div>
+      <div class="city-row"><strong>Maricopa</strong> <span class="cnt">(1)</span><div><a href="#map" class="zl" data-z="85139">85139</a></div></div>
+      <div class="city-row"><strong>Morristown</strong> <span class="cnt">(1)</span><div><a href="#map" class="zl" data-z="85342">85342</a></div></div>
+      <div class="city-row"><strong>New River</strong> <span class="cnt">(1)</span><div><a href="#map" class="zl" data-z="85087">85087</a></div></div>
+      <div class="city-row"><strong>Palo Verde</strong> <span class="cnt">(1)</span><div><a href="#map" class="zl" data-z="85343">85343</a></div></div>
+      <div class="city-row"><strong>Paradise Valley</strong> <span class="cnt">(1)</span><div><a href="#map" class="zl" data-z="85253">85253</a></div></div>
+      <div class="city-row"><strong>Queen Creek</strong> <span class="cnt">(1)</span><div><a href="#map" class="zl" data-z="85142">85142</a></div></div>
+      <div class="city-row"><strong>Rio Verde</strong> <span class="cnt">(1)</span><div><a href="#map" class="zl" data-z="85263">85263</a></div></div>
+      <div class="city-row"><strong>Sun Lakes</strong> <span class="cnt">(1)</span><div><a href="#map" class="zl" data-z="85248">85248</a></div></div>
+      <div class="city-row"><strong>Tolleson</strong> <span class="cnt">(1)</span><div><a href="#map" class="zl" data-z="85353">85353</a></div></div>
+      <div class="city-row"><strong>Tonopah</strong> <span class="cnt">(1)</span><div><a href="#map" class="zl" data-z="85354">85354</a></div></div>
+      <div class="city-row"><strong>Tortilla Flat</strong> <span class="cnt">(1)</span><div><a href="#map" class="zl" data-z="85190">85190</a></div></div>
+      <div class="city-row"><strong>Waddell</strong> <span class="cnt">(1)</span><div><a href="#map" class="zl" data-z="85355">85355</a></div></div>
+      <div class="city-row"><strong>Wittmann</strong> <span class="cnt">(1)</span><div><a href="#map" class="zl" data-z="85361">85361</a></div></div>
+      <div class="city-row"><strong>Youngtown</strong> <span class="cnt">(1)</span><div><a href="#map" class="zl" data-z="85363">85363</a></div></div>
+    </div>
+
+    <h2 id="faq">Questions</h2>
+    <h3>How many zip codes are in Maricopa County?</h3>
+    <p>The Maricopa County USPS zip code file has 196 zip codes with mapped boundaries. Phoenix alone has 70 of them. Post office box and single-building zip codes have no area of their own, so they don&#x27;t appear on a boundary map.</p>
+    <h3>What zip codes are in Phoenix?</h3>
+    <p>Phoenix zip codes on the county map: 85001, 85002, 85003, 85004, 85005, 85006, 85007, 85008, 85009, 85010, 85011, 85012, 85013, 85014, 85015, 85016, 85017, 85018, 85019, 85020, 85021, 85022, 85023, 85024, 85026, 85027, 85028, 85029, 85030, 85031, 85032, 85033, 85034, 85035, 85036, 85037, 85038, 85040, 85041, 85042, 85043, 85044, 85045, 85046, 85048, 85050, 85051, 85053, 85054, 85060, 85061, 85062, 85063, 85064, 85066, 85067, 85068, 85069, 85070, 85071, 85072, 85074, 85076, 85078, 85079, 85080, 85082, 85083, 85085, 85086. Some of these also cover parts of neighboring towns.</p>
+    <h3>Do zip codes follow city limits?</h3>
+    <p>No. Zip codes are mail delivery routes set by the Postal Service, not city boundaries. A home can have a Phoenix mailing address and sit in another city, or the reverse. Check the county assessor or the city&#x27;s own map when city limits matter, for example for taxes, schools or permits.</p>
+    <h3>Where does this map&#x27;s data come from?</h3>
+    <p>The outlines come from Maricopa County&#x27;s USPS zip code boundary file, published by Maricopa County GIS. Home prices come from Maricopa County Recorder sales records (affidavits of property value) from September 2025 through August 2026. Outlines are simplified slightly so the map loads fast on a phone.</p>
+
+    <p class="sources">Sources: Maricopa County GIS, USPS zip code boundaries (Maricopa County does not guarantee the data is complete or current). Home prices: Maricopa County Recorder affidavits of property value, September 2025 to August 2026; see <a href="/about.html#research">how we research our numbers</a> and the full <a href="/blog/home-prices-by-zip-code-phoenix-east-valley.html">home prices by zip code</a> tables. Map &copy; OpenStreetMap contributors.</p>
+
+    <div class="blog-cta">
+      <strong>Found the zip codes you like?</strong>
+      <p style="margin-top:10px;">Send us the area or a home you like. We will tell you your rebate in dollars and set up showings, with no per-showing fees.</p>
+      <a href="#get-started" class="cta-button">Check My Rebate &rarr;</a>
+    </div>
+
+    <h2 id="get-started">Get Started</h2>
+    <p>Tell us what you are looking for and we will text you shortly with a realistic rebate estimate and answers to your questions.</p>
+
+    <div class="lead-card">
+      <form class="lead-form" data-form-name="blog_zip_map" data-lang="en" novalidate>
+        <div class="lead-row">
+          <div><label for="blog-zip-map-first">First name</label><input id="blog-zip-map-first" type="text" name="first_name" autocomplete="given-name"></div>
+          <div><label for="blog-zip-map-last">Last name</label><input id="blog-zip-map-last" type="text" name="last_name" autocomplete="family-name"></div>
+        </div>
+        <label for="blog-zip-map-phone">Mobile phone</label><input id="blog-zip-map-phone" type="tel" name="phone" autocomplete="tel" inputmode="tel" required>
+        <label for="blog-zip-map-msg">Anything we should know? <span class="opt">(optional)</span></label>
+        <textarea id="blog-zip-map-msg" name="message" maxlength="1000"></textarea>
+        <div class="lead-hp" aria-hidden="true"><label for="blog-zip-map-website">Website</label><input id="blog-zip-map-website" type="text" name="website" tabindex="-1" autocomplete="off"></div>
+        <label class="lead-consent"><input type="checkbox" name="consent" value="yes"><span class="lead-consent-text">By checking this box, I agree to receive calls and text messages from RebateAZ at the number provided, including messages sent using automated technology, about my home search. Consent is not a condition of purchase. Msg &amp; data rates may apply. Msg frequency varies. Reply STOP to opt out, HELP for help. See our <a href="/privacy.html">Privacy Policy</a> and <a href="/terms.html">Terms</a>.</span></label>
+        <button type="submit">Get My Rebate</button>
+        <div class="lead-error" role="alert" hidden></div>
+      </form>
+      <div class="lead-success" hidden><strong>Thanks! We got your info.</strong><p>We will text you shortly from (602) 975-2727. If it is after 9 PM, we will text you in the morning.</p></div>
+      <p class="lead-alt">Prefer to talk? <a href="sms:+16029752727">Text</a> or <a href="tel:+16029752727">call (602) 975-2727</a></p>
+    </div>
+
+  </div>
+</section>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+(function(){
+  var PRICES = {"85018":{"n":"669","m":"1,084,000","ch":"+21.5%","cash":"31","co":"23","r":"16,260"},"85003":{"n":"104","m":"698,500","ch":"+12.1%","cash":"28","co":"13","r":"10,478"},"85028":{"n":"347","m":"690,000","ch":"-4.8%","cash":"24","co":"18","r":"10,350"},"85054":{"n":"206","m":"674,995","ch":"-2.0%","cash":"44","co":"6","r":"10,125"},"85045":{"n":"137","m":"655,000","ch":"+0.8%","cash":"19","co":"4","r":"9,825"},"85085":{"n":"500","m":"645,000","ch":"0.0%","cash":"27","co":"7","r":"9,675"},"85083":{"n":"266","m":"612,000","ch":"-4.0%","cash":"19","co":"7","r":"9,180"},"85086":{"n":"694","m":"600,000","ch":"-3.8%","cash":"30","co":"6","r":"9,000"},"85024":{"n":"438","m":"585,965","ch":"+18.4%","cash":"13","co":"4","r":"8,789"},"85050":{"n":"462","m":"585,000","ch":"-2.5%","cash":"22","co":"6","r":"8,775"},"85048":{"n":"431","m":"576,500","ch":"+0.3%","cash":"16","co":"8","r":"8,648"},"85016":{"n":"610","m":"561,500","ch":"+0.6%","cash":"34","co":"16","r":"8,422"},"85013":{"n":"260","m":"500,000","ch":"-8.3%","cash":"22","co":"15","r":"7,500"},"85007":{"n":"113","m":"490,000","ch":"+7.7%","cash":"19","co":"19","r":"7,350"},"85339":{"n":"115","m":"484,990","ch":"-2.2%","cash":"3","co":"0","r":"7,275"},"85014":{"n":"323","m":"479,000","ch":"+1.7%","cash":"24","co":"17","r":"7,185"},"85044":{"n":"510","m":"473,112","ch":"-3.4%","cash":"18","co":"6","r":"7,097"},"85012":{"n":"108","m":"467,500","ch":"-12.2%","cash":"36","co":"6","r":"7,012"},"85032":{"n":"811","m":"455,000","ch":"-3.2%","cash":"21","co":"15","r":"6,825"},"85022":{"n":"527","m":"440,000","ch":"-1.4%","cash":"21","co":"10","r":"6,600"},"85006":{"n":"197","m":"435,000","ch":"-5.0%","cash":"16","co":"22","r":"6,525"},"85021":{"n":"327","m":"425,000","ch":"-1.2%","cash":"17","co":"16","r":"6,375"},"85023":{"n":"349","m":"422,500","ch":"-6.1%","cash":"16","co":"11","r":"6,338"},"85020":{"n":"543","m":"418,000","ch":"-0.5%","cash":"24","co":"13","r":"6,270"},"85037":{"n":"803","m":"412,500","ch":"+5.8%","cash":"7","co":"6","r":"6,188"},"85042":{"n":"495","m":"410,000","ch":"-3.8%","cash":"15","co":"9","r":"6,150"},"85041":{"n":"542","m":"378,500","ch":"-1.9%","cash":"12","co":"10","r":"5,678"},"85008":{"n":"278","m":"375,000","ch":"-2.6%","cash":"17","co":"19","r":"5,625"},"85053":{"n":"307","m":"370,000","ch":"-3.9%","cash":"14","co":"11","r":"5,550"},"85027":{"n":"422","m":"370,000","ch":"-3.6%","cash":"14","co":"11","r":"5,550"},"85043":{"n":"253","m":"365,000","ch":"-1.4%","cash":"9","co":"10","r":"5,475"},"85029":{"n":"463","m":"360,000","ch":"-5.3%","cash":"12","co":"15","r":"5,400"},"85015":{"n":"332","m":"350,000","ch":"-4.1%","cash":"17","co":"18","r":"5,250"},"85040":{"n":"241","m":"348,000","ch":"-3.1%","cash":"11","co":"12","r":"5,220"},"85019":{"n":"179","m":"335,000","ch":"-1.5%","cash":"11","co":"16","r":"5,025"},"85051":{"n":"374","m":"335,000","ch":"-6.7%","cash":"14","co":"15","r":"5,025"},"85035":{"n":"275","m":"330,000","ch":"-1.5%","cash":"9","co":"17","r":"4,950"},"85031":{"n":"150","m":"325,500","ch":"-0.5%","cash":"15","co":"17","r":"4,882"},"85033":{"n":"369","m":"320,000","ch":"-5.4%","cash":"10","co":"20","r":"4,800"},"85017":{"n":"185","m":"295,000","ch":"-10.3%","cash":"14","co":"23","r":"4,350"},"85009":{"n":"217","m":"280,000","ch":"-10.0%","cash":"13","co":"20","r":"3,900"},"85249":{"n":"738","m":"683,000","ch":"-5.1%","cash":"25","co":"5","r":"10,245"},"85248":{"n":"323","m":"632,500","ch":"-0.4%","cash":"29","co":"7","r":"9,488"},"85286":{"n":"518","m":"585,000","ch":"-6.4%","cash":"20","co":"6","r":"8,775"},"85226":{"n":"354","m":"494,250","ch":"-1.2%","cash":"18","co":"7","r":"7,414"},"85224":{"n":"459","m":"450,000","ch":"-4.3%","cash":"18","co":"7","r":"6,750"},"85225":{"n":"650","m":"450,000","ch":"-1.6%","cash":"14","co":"10","r":"6,750"},"85298":{"n":"776","m":"722,000","ch":"+1.0%","cash":"22","co":"5","r":"10,830"},"85297":{"n":"410","m":"610,000","ch":"0.0%","cash":"18","co":"5","r":"9,150"},"85296":{"n":"654","m":"569,950","ch":"+1.8%","cash":"18","co":"9","r":"8,549"},"85234":{"n":"576","m":"558,000","ch":"+1.5%","cash":"18","co":"9","r":"8,370"},"85295":{"n":"600","m":"550,000","ch":"+2.8%","cash":"21","co":"7","r":"8,250"},"85233":{"n":"433","m":"505,000","ch":"-4.7%","cash":"17","co":"10","r":"7,575"},"85213":{"n":"430","m":"569,000","ch":"-3.0%","cash":"20","co":"7","r":"8,535"},"85212":{"n":"1,159","m":"562,456","ch":"-2.2%","cash":"16","co":"4","r":"8,437"},"85207":{"n":"697","m":"547,000","ch":"-3.7%","cash":"27","co":"12","r":"8,205"},"85215":{"n":"339","m":"495,000","ch":"-3.9%","cash":"33","co":"6","r":"7,425"},"85203":{"n":"356","m":"450,000","ch":"-3.2%","cash":"14","co":"13","r":"6,750"},"85209":{"n":"690","m":"425,000","ch":"-1.2%","cash":"34","co":"5","r":"6,375"},"85202":{"n":"427","m":"395,000","ch":"-1.0%","cash":"13","co":"12","r":"5,925"},"85204":{"n":"454","m":"395,000","ch":"-1.3%","cash":"13","co":"12","r":"5,925"},"85205":{"n":"548","m":"388,881","ch":"-2.8%","cash":"22","co":"8","r":"5,833"},"85208":{"n":"471","m":"365,000","ch":"-4.6%","cash":"26","co":"9","r":"5,475"},"85206":{"n":"597","m":"362,204","ch":"-2.1%","cash":"36","co":"8","r":"5,433"},"85210":{"n":"274","m":"350,000","ch":"-7.9%","cash":"18","co":"15","r":"5,250"},"85201":{"n":"348","m":"337,598","ch":"-3.5%","cash":"20","co":"13","r":"5,064"},"85284":{"n":"213","m":"685,000","ch":"-6.8%","cash":"25","co":"10","r":"10,275"},"85283":{"n":"381","m":"470,000","ch":"-0.1%","cash":"16","co":"15","r":"7,050"},"85282":{"n":"487","m":"450,000","ch":"-5.3%","cash":"22","co":"17","r":"6,750"},"85281":{"n":"297","m":"425,000","ch":"+1.2%","cash":"30","co":"20","r":"6,375"},"85288":{"n":"113","m":"395,000","ch":"+2.3%","cash":"27","co":"12","r":"5,925"},"85262":{"n":"514","m":"1,600,000","ch":"+3.2%","cash":"50","co":"11","r":"24,000"},"85255":{"n":"1,186","m":"1,477,450","ch":"+1.9%","cash":"45","co":"14","r":"22,162"},"85266":{"n":"361","m":"1,385,000","ch":"+9.1%","cash":"49","co":"10","r":"20,775"},"85259":{"n":"407","m":"1,250,000","ch":"+11.6%","cash":"34","co":"15","r":"18,750"},"85258":{"n":"763","m":"960,000","ch":"+11.6%","cash":"45","co":"19","r":"14,400"},"85254":{"n":"927","m":"894,400","ch":"-1.7%","cash":"27","co":"24","r":"13,416"},"85260":{"n":"682","m":"753,720","ch":"+8.6%","cash":"38","co":"17","r":"11,306"},"85250":{"n":"460","m":"615,000","ch":"+2.5%","cash":"37","co":"15","r":"9,225"},"85251":{"n":"747","m":"590,000","ch":"+2.6%","cash":"40","co":"27","r":"8,850"},"85257":{"n":"473","m":"589,000","ch":"+0.5%","cash":"22","co":"22","r":"8,835"}};
+  var ev = function(n,p){ try { if (window.gtag) gtag('event', n, p||{}); } catch(e){} };
+  var msg = document.getElementById('zm-msg');
+  var map = L.map('map', { scrollWheelZoom: false, zoomSnap: 0.5 }).setView([33.45, -112.07], 9);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | Zip boundaries: Maricopa County GIS'
+  }).addTo(map);
+  map.on('focus', function(){ map.scrollWheelZoom.enable(); });
+  var byZip = {}, byCity = {}, labels = [], layer, selected;
+  var base = function(f){ var d = PRICES[f.properties.z];
+    return { color:'#002868', weight:1.2, opacity:.8, fillColor: d ? '#3b82f6' : '#94a3b8', fillOpacity: d ? .16 : .06 }; };
+  function popup(p){
+    var d = PRICES[p.z], h = '<div class="zp"><h4>' + p.z + '</h4><div>' + p.c + '</div>';
+    if (d) {
+      h += '<table><tr><td>Median price</td><td><strong>$' + d.m + '</strong></td></tr>' +
+           '<tr><td>1-yr change</td><td>' + d.ch + '</td></tr>' +
+           '<tr><td>Sales (12 mo)</td><td>' + d.n + '</td></tr>' +
+           '<tr><td>Paid cash</td><td>' + d.cash + '%</td></tr>' +
+           '<tr><td>Rebate at median*</td><td><strong>$' + d.r + '</strong></td></tr></table>' +
+           '<p class="note">*With 3% offered to the buyer\'s agent. County sales Sep 2025 to Aug 2026.</p>';
+    } else {
+      h += '<p class="note">Not enough sales in the last year for a reliable median.</p>';
+    }
+    h += '<p style="margin:.5rem 0 0;"><a href="/blog/buyer-rebate-calculator-arizona.html">Rebate calculator</a> &middot; <a href="#get-started">Ask about this area</a></p></div>';
+    return h;
+  }
+  function pick(z, how){
+    var l = byZip[z]; if (!l) return false;
+    if (selected) layer.resetStyle(selected);
+    selected = l; l.setStyle({ weight:3, color:'#d97706', fillOpacity:.28 }); l.bringToFront();
+    map.fitBounds(l.getBounds(), { maxZoom: 13, padding:[20,20] });
+    l.openPopup(l.getBounds().getCenter());
+    ev('zip_map_select', { zip: z, method: how });
+    return true;
+  }
+  fetch('/assets/maricopa-zip-codes.json').then(function(r){ return r.json(); }).then(function(g){
+    layer = L.geoJSON(g, {
+      style: base,
+      onEachFeature: function(f, l){
+        var p = f.properties; byZip[p.z] = l;
+        p.c.split(' / ').forEach(function(c){ (byCity[c.toLowerCase()] = byCity[c.toLowerCase()] || []).push(l); });
+        l.bindPopup(popup(p), { maxWidth: 260 });
+        l.on('click', function(){ if (selected && selected !== l) layer.resetStyle(selected); selected = l;
+          l.setStyle({ weight:3, color:'#d97706', fillOpacity:.28 }); ev('zip_map_select', { zip: p.z, method: 'tap' }); });
+        labels.push(L.tooltip({ permanent:true, direction:'center', className:'zip-lbl', interactive:false }).setLatLng(l.getBounds().getCenter()).setContent(p.z));
+      }
+    }).addTo(map);
+    map.fitBounds(L.latLngBounds([[33.2,-112.5],[33.85,-111.6]]));
+    var lg = L.layerGroup(labels);
+    var sync = function(){ if (map.getZoom() >= 11) lg.addTo(map); else lg.remove(); };
+    map.on('zoomend', sync); sync();
+    var h = (location.hash||'').match(/^#(\d{5})$/); if (h) pick(h[1], 'link');
+  }).catch(function(){ msg.textContent = 'The map did not load. Please refresh the page.'; });
+
+  function search(){
+    var q = document.getElementById('zm-q').value.trim().toLowerCase(); if (!q) return;
+    ev('zip_map_search', { query: q.slice(0,40) });
+    var z = q.match(/\b\d{5}\b/);
+    if (z) { if (pick(z[0], 'search')) { msg.textContent = ''; } else { msg.textContent = z[0] + ' is not a Maricopa County zip code with a mapped area.'; } return; }
+    var hits = byCity[q] || Object.keys(byCity).filter(function(c){ return c.indexOf(q) === 0; }).reduce(function(a,c){ return a.concat(byCity[c]); }, []);
+    if (!hits.length) { msg.textContent = 'No match. Try a 5-digit zip code or a city name like Mesa.'; return; }
+    map.closePopup(); if (selected) { layer.resetStyle(selected); selected = null; }
+    var b = L.latLngBounds([]); hits.forEach(function(l){ b.extend(l.getBounds()); });
+    map.fitBounds(b, { padding:[20,20] });
+    msg.textContent = hits.length + ' zip code' + (hits.length>1?'s':'') + ': ' + hits.map(function(l){ return l.feature.properties.z; }).sort().join(', ');
+  }
+  document.getElementById('zm-go').addEventListener('click', search);
+  document.getElementById('zm-q').addEventListener('keydown', function(e){ if (e.key === 'Enter') search(); });
+  document.getElementById('zm-me').addEventListener('click', function(){
+    if (!navigator.geolocation) { msg.textContent = 'Your browser does not share location.'; return; }
+    msg.textContent = 'Finding you...';
+    navigator.geolocation.getCurrentPosition(function(pos){
+      var pt = [pos.coords.longitude, pos.coords.latitude], found = null;
+      function inRing(r){ var c=false; for (var i=0,j=r.length-1;i<r.length;j=i++){ var xi=r[i][0],yi=r[i][1],xj=r[j][0],yj=r[j][1];
+        if (((yi>pt[1])!==(yj>pt[1])) && (pt[0] < (xj-xi)*(pt[1]-yi)/(yj-yi)+xi)) c=!c; } return c; }
+      function inPoly(p){ if (!inRing(p[0])) return false; for (var k=1;k<p.length;k++) if (inRing(p[k])) return false; return true; }
+      Object.keys(byZip).some(function(z){ var g = byZip[z].feature.geometry;
+        var polys = g.type === 'Polygon' ? [g.coordinates] : g.coordinates;
+        if (polys.some(inPoly)) { found = z; return true; } return false; });
+      if (found) { msg.textContent = 'You are in ' + found + '.'; pick(found, 'locate'); }
+      else { msg.textContent = 'You seem to be outside Maricopa County.'; }
+    }, function(){ msg.textContent = 'Location was not shared. You can search instead.'; }, { timeout: 10000 });
+  });
+  document.querySelectorAll('.zl').forEach(function(a){ a.addEventListener('click', function(e){
+    e.preventDefault(); document.getElementById('map-tools').scrollIntoView({ behavior:'smooth' }); pick(a.getAttribute('data-z'), 'list'); }); });
+})();
+</script>
+
+<footer>
+  <div class="container">
+    <div class="footer-logo">
+      <img src="/homesmart-logo.png" alt="Home Smart Logo" class="footer-logo-img">
+      <div>RebateAZ</div>
+    </div>
+
+    <div class="footer-links">
+      <a href="/#contact">Get Started</a>
+      <a href="/#how-it-works">How It Works</a>
+      <a href="/#faq">FAQ</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/terms.html">Terms & Conditions</a>
+    </div>
+
+    <p>&copy; 2026 Home Smart.</p>
+    <p>Contact: <a href="mailto:info@rebateaz.com">info@rebateaz.com</a> | (602) 975-2727</p>
+
+    <div class="disclaimer">
+      <p><strong>Disclaimer:</strong> RebateAZ is not a lender and is not affiliated with FHA, VA, Fannie Mae, or Freddie Mac. Loan rules change; confirm how a credit applies to your loan with your lender. Commission rebates must be disclosed and reflected on the settlement statement and are subject to lender guidelines, buyer broker agreements, and transaction structure.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/lead-form.js?v=20261113" defer></script>
+</body>
+</html>
