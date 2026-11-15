@@ -375,7 +375,7 @@
     ev('zip_map_select', { zip: z, method: how });
     return true;
   }
-  fetch('/assets/maricopa-zip-codes.json').then(function(r){ return r.json(); }).then(function(g){
+  fetch('/assets/maricopa-zip-codes.json?v=20261115b').then(function(r){ return r.json(); }).then(function(g){
     layer = L.geoJSON(g, {
       style: base,
       pointToLayer: function(f, ll){ return L.circleMarker(ll, poStyle); },
