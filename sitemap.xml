@@ -317,6 +317,13 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://rebateaz.com/blog/phoenix-home-prices-map-by-zip-code.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <image:image><image:loc>https://rebateaz.com/images/maps/phoenix-home-price-change-map-by-zip-code.png</image:loc></image:image>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://rebateaz.com/blog/buyer-rebate-calculator-arizona.html</loc>
     <lastmod>2026-11-15</lastmod>
     <changefreq>monthly</changefreq>
