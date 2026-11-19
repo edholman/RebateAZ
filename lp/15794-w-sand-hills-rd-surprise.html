@@ -120,6 +120,12 @@
     .specs span { background: rgba(255,255,255,0.12); border-radius: 999px; padding: 0.3rem 0.75rem; font-weight: 600; font-size: 0.92rem; }
     .photo { background: #dbe3f0; border-radius: 14px; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; color: var(--gray); font-weight: 600; }
     .compare th:first-child, .compare td:first-child { width: 40%; }
+    .rate-box { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 0 0 1rem; }
+    .rate-box > div { background: #fff; border-radius: 12px; padding: 1rem 1.1rem; box-shadow: 0 4px 14px rgba(0,0,0,0.06); }
+    .rate-box .big { display: block; font-size: 1.7rem; font-weight: 800; color: var(--navy); }
+    .rate-box small { color: var(--gray); }
+    .terms { font-size: 0.82rem; color: var(--gray); line-height: 1.45; }
+    @media (max-width: 820px) { .rate-box { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -171,6 +177,19 @@
         <p class="alt">Rather text? <a href="sms:+16029752727?&amp;body=Hi%2C%20I%27m%20interested%20in%2015794%20W%20Sand%20Hills%20Rd.">Text (602) 975-2727</a> or <a href="tel:+16029752727">call</a></p>
         <div class="trust"><img src="/homesmart-logo.png" alt="HomeSmart" height="26"><span>Listed by HomeSmart<br>Licensed Arizona real estate agents</span></div>
       </div>
+    </div>
+  </section>
+
+  <section class="block alt-bg" id="financing">
+    <div class="wrap">
+      <h2 class="sec">Financing example with the 3% seller credit</h2>
+      <div class="rate-box">
+        <div><span class="big">6.25%</span><small>Interest rate</small></div>
+        <div><span class="big">6.50%</span><small>APR</small></div>
+        <div><span class="big">$3,547</span><small>Monthly principal and interest</small></div>
+      </div>
+      <p>The seller's 3% credit ($21,600) covers closing costs and buys down the rate, and at-cost financing means a flat $2,500 lender fee instead of the typical 2.5%. With a typical lender charging 2.5%, the same credit gets you to about 6.875% (7.13% APR), or $3,784 a month.</p>
+      <p class="terms">Example only, not a commitment to lend. Based on a purchase price of $720,000 with 20% down ($144,000), a $576,000 conventional 30-year fixed-rate loan, 360 monthly payments of $3,546.53, a 740 or higher credit score, and an owner-occupied single-family home. Payment shown is principal and interest only; taxes, insurance and HOA dues are extra, so the actual payment will be higher. APR assumes about $15,080 in prepaid finance charges, including discount points paid from the seller credit. Rates as of November 18, 2026, and subject to change daily. Subject to credit approval and underwriting; other terms available.</p>
     </div>
   </section>
 
@@ -228,7 +247,7 @@
 
   <footer>
     <div class="wrap">
-      <p>Listed by HomeSmart. RebateAZ is an independent real estate agent team powered by HomeSmart and is not affiliated with Fulton Homes or the Escalante master developer. Information is deemed reliable but not guaranteed; buyers should verify all details, including square footage and schools. Seller credit subject to lender guidelines. Financing available through Loan Factory, loan officer NMLS 1940106. Subject to credit approval; not a commitment to lend. Buyers may use any lender. Equal Housing Opportunity.</p>
+      <p>Listed by HomeSmart. RebateAZ is an independent real estate agent team powered by HomeSmart and is not affiliated with Fulton Homes or the Escalante master developer. Information is deemed reliable but not guaranteed; buyers should verify all details, including square footage and schools. Seller credit subject to lender guidelines. Financing available through Loan Factory. Loan officer NMLS #1940106. Subject to credit approval; not a commitment to lend. Buyers may use any lender. Equal Housing Lender. Equal Housing Opportunity.</p>
       <p><a href="/">About RebateAZ</a> &middot; <a href="/privacy.html">Privacy Policy</a> &middot; <a href="/terms.html">Terms</a></p>
     </div>
   </footer>
